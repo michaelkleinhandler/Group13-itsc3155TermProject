@@ -20,13 +20,13 @@ ActiveRecord::Schema.define(version: 2019_03_23_192802) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "firstName", null: false
-    t.string "lastName", null: false
-    t.boolean "isTeacher", null: false
+    t.string "firstName"
+    t.string "lastName"
+    t.boolean "isTeacher"
     t.boolean "isAdmin"
     t.text "bio"
     t.text "image"
-    t.string "university", null: false
+    t.string "university"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-      sessions:'users/sessions'
+      sessions:'users/sessions', registrations:'users/registrations', confirmations:'users/confirmations',
+      mailer:'users/mailer', passwords:'users/passwords', shared:'users/shared', unlocks:'users/unlocks'
   }
   get 'welcome/index'
   root 'welcome#index'
