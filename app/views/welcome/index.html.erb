@@ -1,26 +1,28 @@
-<titleBar1></titleBar1>
-<titleBar2></titleBar2>
-<titleBar3></titleBar3>
-<vertBar></vertBar>
+<h1 id = "title">CollaboRATE</h1>
+<div id = "colorCol">
+    <vertBar></vertBar>
+</div>
+<div id = "topRow">
+    <titleBar1></titleBar1>
+    <titleBar2></titleBar2>
+    <titleBar3></titleBar3>
+</div>
+
 
 <!--<h1>Welcome to Collabo<strong>RATE</strong></h1>-->
 <body>
-    <table style=width:100%>
-        <tr>
-        <td><p><a href="myclasses">Classes I am enrolled in (DUMMY)</a></p>
-        </td>
-        <td>
-            <p><a href="myGroups">Group Study Sessions (DUMMY)</a></p>
-        </td>
-        </tr>
-        <tr>
-            <td>
-                <p><a href="myProjects">Group Projects</a></P>
-                </p>
-            </td>
-            <td>
-                <p><a href="enrollMe">Enroll in a course</a></p>
-            </td>
-        </tr>
-    </table>
+    <div id="buttonWrapper">
+    <button id="signIn" type = "button">Sign in</button> <button id="signOut" type = "button">Sign out</button>
+    </div>
+    <%= render 'userNav' %> 
+    <div id = "formWrapper">
+    <label for="firstName">First Name:</label>
+    <input type = "text" name = "firstName" value="firstName"><br>
+    <label for="lastName">Last Name:</label>
+    <input type = "text" name = "lastName" value="lastName"><br>
+    <label for="email">Email:</label>
+    <input type = "text" name = "email" value="email"><br>
+    <label for="uni">University:</label>
+    <input type = "text" name = "uni" value="uni"><br>
+    </div>
 </body>
