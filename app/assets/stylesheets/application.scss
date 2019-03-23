@@ -23,9 +23,7 @@
   --collBlue: #B1F8F2
 }
 
-:not(.column, titleBar1, titleBar2, titleBar3, vertBar){
-  //margin-left:3%;
-}
+
 
 h1 {
   width: 100%;
@@ -153,7 +151,9 @@ vertBar {
   padding-top:0px;
 }
 
-.column .row h2{
+.column .row h2 h1 {
   padding:0px;
   margin-top:0px;
+  position:fixed;
+  z-index:25;
 }
