@@ -94,4 +94,7 @@ Rails.application.configure do
 
   config.secret_token = SecureRandom.hex(64)
 
+  config.action_mailer.default_url_options = { host: 'https://collaborate-uncc.herokuapp.com', port: 443 }
+
+
 end

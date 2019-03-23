@@ -1,28 +1,20 @@
-<h1 id = "title">CollaboRATE</h1>
-<div id = "colorCol">
-    <vertBar></vertBar>
-</div>
-<div id = "topRow">
-    <titleBar1></titleBar1>
-    <titleBar2></titleBar2>
-    <titleBar3></titleBar3>
-</div>
+<header>
+  <div id="buttonWrapper">
+    <% if not user_signed_in? %>
+      <%= link_to('Sign in', new_user_session_path) %> or <%= link_to('Sign Up', new_user_registration_path) %>
+    <% else %>
+      <%= button_to('Sign out, #{current_user.name', new_user_session_path) %>
+    <% end %>
+  </div>
+</header>
 
-
-<!--<h1>Welcome to Collabo<strong>RATE</strong></h1>-->
 <body>
-    <div id="buttonWrapper">
-    <button id="signIn" type = "button">Sign in</button> <button id="signOut" type = "button">Sign out</button>
-    </div>
-    <%= render 'userNav' %> 
-    <div id = "formWrapper">
-    <label for="firstName">First Name:</label>
-    <input type = "text" name = "firstName" value="firstName"><br>
-    <label for="lastName">Last Name:</label>
-    <input type = "text" name = "lastName" value="lastName"><br>
-    <label for="email">Email:</label>
-    <input type = "text" name = "email" value="email"><br>
-    <label for="uni">University:</label>
-    <input type = "text" name = "uni" value="uni"><br>
+    <div class="row", style="margin-top:2%;">
+      <div id = "formWrapper" class="column">
+        <%= render 'userLogin'%>
+       </div>
+      <div class="column">
+        <%= render 'userNav' %>
+      </div>
     </div>
 </body>

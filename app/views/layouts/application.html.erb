@@ -2,18 +2,29 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 <html>
+
   <head>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <a href="/"><h1 id = "title">CollaboRATE</h1></a>
+    <div id = "colorCol">
+      <vertBar></vertBar>
+    </div>
+    <div id = "topRow">
+      <titleBar1></titleBar1>
+      <titleBar2></titleBar2>
+      <titleBar3></titleBar3>
+    </div>
+
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     
   </head>
-  
 
-  
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
