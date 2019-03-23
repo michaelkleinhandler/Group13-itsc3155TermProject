@@ -23,6 +23,26 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
 
+      <div class="field">
+        <%= f.label :firstName %><br/>
+        <%= f.text_field :firstName%>
+      </div>
+
+      <div class="field">
+        <%= f.label :lastName %><br/>
+        <%= f.text_field :lastName%>
+      </div>
+
+      <div class="field">
+        <%= f.label :university %><br/>
+        <%= f.text_field :university%>
+      </div>
+
+      <div class="field">
+        <%= f.label :isTeacher %><br/>
+        <%= f.check_box :isTeacher%>
+      </div>
+
       <div class="actions">
         <%= f.submit "Sign up" %>
       </div>

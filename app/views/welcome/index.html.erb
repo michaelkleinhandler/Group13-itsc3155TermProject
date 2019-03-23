@@ -3,7 +3,8 @@
     <% if not user_signed_in? %>
       <%= link_to('Sign in', new_user_session_path) %> or <%= link_to('Sign Up', new_user_registration_path) %>
     <% else %>
-      <%= button_to('Sign out, #{current_user.name', new_user_session_path) %>
+      Hello, <%= current_user.firstName %>!
+      <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
     <% end %>
   </div>
 </header>
