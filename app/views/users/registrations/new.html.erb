@@ -39,8 +39,8 @@
       </div>
 
       <div class="field">
-        <%= f.label 'Are you a teacher?' %><br/>
-        <td><%= f.select :isTeacher, options_for_select([['No', false], ['Yes', true]])%></td>
+        <%= f.label "Role:" %><br/>
+        <td><%= f.select :defRole, options_for_select([['Student', "Student"], ['Teacher', "Teacher"], ['School Admin', "uniAdmin"], ['Super Admin', "superAdmin"]]) %></td>
       </div>
 
       <div class="actions">
