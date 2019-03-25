@@ -26,7 +26,7 @@
 
 
 h1 {
-  width: 100%;
+
   font-size: 45px;
   color: var(--collGrey);
   position:relative;
@@ -75,7 +75,7 @@ vertBar {
 }
 
 #userNav {
-  width: 100%;
+  width: 40%;
   position: relative;
   float: right;
   //top: 0px;
@@ -92,7 +92,7 @@ vertBar {
   font-size: 16px;
   color: #2196F3;
   display: block;
-  width: 100%;
+  width: 50%;
 
 }
 
@@ -110,7 +110,6 @@ vertBar {
 }
 
 #title {
-  width: 100%;
   height: 5%;
   font-size: 42px;
   color: var(--collGrey);
@@ -140,12 +139,12 @@ vertBar {
   position:fixed;
   top:5%;
   width:94%;
-  align:center;
+  align: center;
   z-index: 20;
 }
 
 .column{
-  flex: 50%;
+  flex: 70%;
   position:relative;
   vertical-align:top;
   padding-top:0px;
