@@ -10,16 +10,16 @@
 </header>
 
 <body>
-<div class="row" , style="margin-top:2%;">
-  <% if not user_signed_in? %>
-    <div id="formWrapper" class="column">
-      <%= render 'userLogin' %>
+<div class="container">
+  <div class="row" , style="margin-top:2%;">
+    <% if not user_signed_in? %>
+      <div id="formWrapper" class="column">
+        <%= render 'userLogin' %>
+      </div>
+    <% end %>
+    <div class="column">
+      <%= render 'userNav' %>
     </div>
-  <% end %>
-  <div class="column">
-    <%= render 'userNav' %>
-    <%= image_tag "/images/testing.jpg" %>
-
   </div>
 </div>
 </body>

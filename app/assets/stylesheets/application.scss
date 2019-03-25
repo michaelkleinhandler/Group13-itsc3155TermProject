@@ -45,6 +45,7 @@ titleBar1 {
 #colorCol {
   position: fixed;
   float: left;
+  z-index:9;
 }
 
 titleBar2 {
@@ -82,6 +83,7 @@ vertBar {
 .leftColumn {
   float: left;
   padding: 10px;
+  position:fixed;
 }
 
 #topRow {
@@ -154,3 +156,8 @@ header {
   z-index:10;
 }
 
+.container{
+  position:absolute;
+  z-index:0;
+  width:100%;
+}
