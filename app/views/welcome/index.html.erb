@@ -12,7 +12,9 @@
 <body>
     <div class="row", style="margin-top:2%;">
       <div id = "formWrapper" class="column">
-        <%= render 'userLogin'%>
+        <% if not user_signed_in? %>
+          <%= render 'userLogin'%>
+        <% end %>
        </div>
       <div class="column">
         <%= render 'userNav' %>
