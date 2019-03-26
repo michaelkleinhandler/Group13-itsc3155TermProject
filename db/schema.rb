@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(version: 2019_03_23_192802) do
     t.datetime "updated_at", null: false
     t.string "firstName"
     t.string "lastName"
-    t.boolean "isTeacher"
-    t.boolean "isAdmin"
+    # t.boolean "isTeacher"
+    # t.boolean "isAdmin"
+    t.string "defRole"
     t.text "bio"
     t.text "image"
     t.string "university"
