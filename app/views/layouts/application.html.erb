@@ -16,15 +16,26 @@
       <titleBar3></titleBar3>
     </div>
 
+    <div id="buttonWrapper">
+      <% if not user_signed_in? %>
+        You are not signed in
+      <% else %>
+        Hello, <%= current_user.firstName %>!
+        <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
+      <% end %>
+    </div>
+
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     
   </head>
 
+  <div id="mainBody">
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
+  </div>
 </html>
