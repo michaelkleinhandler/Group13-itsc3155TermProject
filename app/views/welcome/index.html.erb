@@ -17,9 +17,13 @@
         <%= render 'userLogin' %>
       </div>
     <% end %>
-    <div class="column">
+    <% if not user_signed_in? %>
+    <% else %>
+      <div class="column">
       <%= render 'userNav' %>
     </div>
+    <% end %>
+    
   </div>
 </div>
 </body>
