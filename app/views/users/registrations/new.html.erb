@@ -38,9 +38,17 @@
         <%= f.text_field :university%>
       </div>
 
+      Select all that apply
       <div class="field">
-        <%= f.label 'Role?' %><br/>
-        <td><%= f.select :defRole, options_for_select([['Student', "student"], ['Instructor', "instructor"], ['School Admin', "schAdmin"], ['Super Admin', "superAdmin"]])%></td>
+        <%= f.label 'Student' %>
+        <%= f.check_box :Student%><br>
+        <%= f.label 'Instructor' %>
+        <%= f.check_box :Instructor%><br>
+        <%= f.label 'Organization Admin' %>
+        <%= f.check_box :OrgAdmin%><br>
+        <%= f.label 'Super Administrator' %>
+        <%= f.check_box :SuperAdmin%><br>
+
       </div>
 
       <div class="actions">
