@@ -12,6 +12,17 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+  User Permissions:
+  <%= f.label "Student" %>
+  <%= f.check_box :Student %><br>
+  <%= f.label "Instructor" %>
+  <%= f.check_box :Instructor %><br>
+  <%= f.label "Organization Admin" %>
+  <%= f.check_box :OrgAdmin %><br>
+  <%= f.label "Super Administrator" %>
+  <%= f.check_box :SuperAdmin %>
+  <%= f.label "Approved" %>
+  <%= f.check_box :approved %>
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
