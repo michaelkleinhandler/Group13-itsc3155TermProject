@@ -4,8 +4,10 @@
     <%= image_tag current_user.image, style: 'height:200px;width:auto;' %>
   </div>
   <div class="column">
-    First Name: <%= current_user.firstName %><br>
-    Last Name: <%= current_user.lastName %><br>
+    <div class="login">
+      First Name: <%= current_user.firstName %><br>
+      Last Name: <%= current_user.lastName %><br>
+    </div>
   </div>
 </div>
 </body>
