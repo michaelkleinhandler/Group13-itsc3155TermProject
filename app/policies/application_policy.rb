@@ -35,7 +35,7 @@ class ApplicationPolicy
   end
 
   def registered?
-    (user.SuperAdmin? or user.instructor? or user.student?) and user.approved?
+    (user.SuperAdmin? or user.Instructor? or user.student?) and user.approved?
   end
 
   class Scope
