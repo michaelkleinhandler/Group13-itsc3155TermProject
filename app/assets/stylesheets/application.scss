@@ -28,6 +28,7 @@
   font-weight:bold;
   font-size:24px;
 }
+
 h1 {
 
   font-size: 45px;
@@ -44,6 +45,12 @@ titleBar1 {
   height: 5%;
   background-color: var(--collOrange);
   z-index: 10;
+}
+
+#colorCol {
+  position: fixed;
+  float: left;
+  z-index:9;
 }
 
 titleBar2 {
@@ -102,6 +109,7 @@ vertBar {
 .leftColumn {
   float: left;
   padding: 10px;
+  position:fixed;
 }
 
 #topRow {
@@ -109,13 +117,11 @@ vertBar {
   padding-bottom:5%;
 }
 
-#colorCol {
-  float: left;
-}
 
 #title {
   height: 5%;
   font-size: 42px;
+
   color: var(--collGrey);
   position: absolute;
   z-index: 11;
@@ -152,14 +158,34 @@ vertBar {
   flex: 50%;
   position:relative;
   vertical-align:top;
-  padding-top:0px;
+  padding-top:1%;
 }
 
 .column .row h2 h1 {
   padding:0px;
   margin-top:0px;
+  position:relative;
+}
+
+.notice, .alert{
+  color:red;
+  margin-top:5%;
+  position:relative;
+}
+
+body{
+  position:relative;
+  z-index:-10;
+}
+header {
   position:fixed;
-  z-index:25;
+  z-index:10;
+}
+
+.container{
+  position:absolute;
+  z-index:0;
+  width:100%;
 }
 
 .mainBody{
