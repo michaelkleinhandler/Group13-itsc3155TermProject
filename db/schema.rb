@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_25_001752) do
+ActiveRecord::Schema.define(version: 2019_03_27_182549) do
+
+  create_table "students", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,9 +33,14 @@ ActiveRecord::Schema.define(version: 2019_03_25_001752) do
     t.string "firstName"
     t.string "lastName"
     t.text "bio"
-    t.text "image"
+    t.string "image", default: "/images/profileImages/kid yelling.jpg"
     t.string "university"
     t.string "defRole"
+    t.boolean "Instructor"
+    t.boolean "Student"
+    t.boolean "OrgAdmin"
+    t.boolean "SuperAdmin"
+    t.boolean "approved", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
