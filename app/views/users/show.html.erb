@@ -1,18 +1,5 @@
-<header>
-  <div id="buttonWrapper">
-    <% if not user_signed_in? %>
-      You are not signed in
-    <% else %>
-      Hello, <%= current_user.firstName %>!
-      <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
-    <% end %>
-  </div>
-</header>
-
 <body>
-    <img src = "../assets/images/kid yelling.jpg" alt="Screaming child">
-    
-    
-    
-    
+  First Name: <%= current_user.firstName %><br>
+  Last Name: <%= current_user.lastName %><br>
+  <%= image_tag "/images/kid yelling.jpg" %>
 </body>

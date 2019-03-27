@@ -1,5 +1,7 @@
 <div id = "userNav" class = "leftColumn">
-        <a href="/users/<%= current_user.id%>">My Profile</a>
+        <% if user_signed_in?%>
+          <a href="/users/<%= current_user.id%>">My Profile</a>
+        <% end %>
         <a href="myclasses">Classes I am enrolled in (DUMMY)</a>
         <a href="myGroups">Group Study Sessions (DUMMY)</a>
         <a href="myProjects">Group Projects</a>

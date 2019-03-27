@@ -1,18 +1,10 @@
-<header>
-  <div id="buttonWrapper">
-    <% if not user_signed_in? %>
-      You are not signed in
-    <% else %>
-      Hello, <%= current_user.firstName %>!
-      <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
-    <% end %>
-  </div>
-</header>
 
 <body>
     <div class="row", style="margin-top:2%;">
       <div id = "formWrapper" class="column">
-        <%= render 'userLogin'%>
+        <% if not user_signed_in? %>
+          <%= render 'userLogin'%>
+        <% end %>
        </div>
       <div class="column">
         <%= render 'userNav' %>

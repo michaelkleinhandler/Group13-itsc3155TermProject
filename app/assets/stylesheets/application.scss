@@ -117,6 +117,7 @@ vertBar {
   z-index: 11;
   top: -35px;
   bottom: 20px;
+  left:0;
 }
 
 #formWrapper {
@@ -155,4 +156,9 @@ vertBar {
   margin-top:0px;
   position:fixed;
   z-index:25;
+}
+
+#mainBody{
+  margin-left: 5%;
+  margin-top:5%;
 }
