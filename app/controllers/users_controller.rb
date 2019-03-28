@@ -1,14 +1,22 @@
 class UsersController < ApplicationController
   after_action :verify_authorized
 
+  def show
+    @checkFor = current_user
+    authorize @checkFor
+    @user = User.find(params[:id])
+  end
 
   def myProfile
     @user = current_user
     authorize @user
   end
-end
 
-def user_not_authorized
-  flash[:alert] = "You are not authorized to perform this action."
-  redirect_to(request.referrer || root_path)
+  def adminList
+    @checkFor = current_user
+    authorize @checkFor
+    @users = User.all
+  end
+
+
 end

@@ -5,6 +5,14 @@ class UserPolicy < ApplicationPolicy
     registered?
   end
 
+  def adminList?
+    registered?
+  end
+
+  def show?
+    registered?
+  end
+
   class Scope
     attr_reader :user, :scope
 
