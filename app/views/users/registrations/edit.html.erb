@@ -3,7 +3,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
+  <div class="field" id = "userEditInput">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
@@ -12,18 +12,15 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  User Permissions:
-  <%= f.label "Student" %>
-  <%= f.check_box :Student %><br>
-  <%= f.label "Instructor" %>
-  <%= f.check_box :Instructor %><br>
-  <%= f.label "Organization Admin" %>
-  <%= f.check_box :OrgAdmin %><br>
-  <%= f.label "Super Administrator" %>
-  <%= f.check_box :SuperAdmin %>
-  <%= f.label "Approved" %>
-  <%= f.check_box :approved %>
-  <div class="field">
+  User Permissions: <br>
+  <ul>
+    <li><%= f.label "Student" %><%= f.check_box :Student %></li>
+    <li><%= f.label "Instructor" %><%= f.check_box :Instructor %></li>
+    <li><%= f.label "Organization Admin" %><%= f.check_box :OrgAdmin %></li>
+    <li><%= f.label "Super Administrator" %><%= f.check_box :SuperAdmin %></li>
+    <li><%= f.label "Approved" %><%= f.check_box :approved %></li>
+  </ul>
+  <div id = "userEditInput">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
@@ -32,12 +29,12 @@
     <% end %>
   </div>
 
-  <div class="field">
+  <div id = "userEditInput">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
+  <div id = "userEditInput">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
