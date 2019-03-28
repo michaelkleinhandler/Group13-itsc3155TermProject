@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
   get 'myprofile' => 'users#myProfile'
-  get 'userlist' => 'admin#adminList'
+  get '/admin/userlist' => 'admin#adminList'
   get 'users/:id' => 'users#show', :as => 'show_user'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
