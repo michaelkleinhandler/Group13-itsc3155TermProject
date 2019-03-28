@@ -12,11 +12,4 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-  def adminList
-    @checkFor = current_user
-    authorize @checkFor
-    @users = User.all
-  end
-
-
 end

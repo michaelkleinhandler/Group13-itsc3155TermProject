@@ -1,17 +1,10 @@
-class UserPolicy < ApplicationPolicy
+class AdminPolicy < ApplicationPolicy
   attr_reader :user, :record
 
-  def myProfile?
-    registered?
-  end
-
   def adminList?
-    registered?
-  end
-
-  def show?
     user.SuperAdmin?
   end
+
 
   class Scope
     attr_reader :user, :scope
