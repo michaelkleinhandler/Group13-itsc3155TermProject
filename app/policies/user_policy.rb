@@ -5,6 +5,18 @@ class UserPolicy < ApplicationPolicy
     registered?
   end
 
+  def adminList?
+    user.SuperAdmin?
+  end
+
+  def adminDash?
+    user.SuperAdmin?
+  end
+
+  def show?
+    user.SuperAdmin?
+  end
+
   class Scope
     attr_reader :user, :scope
 

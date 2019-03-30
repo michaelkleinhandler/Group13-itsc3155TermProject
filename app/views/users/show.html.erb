@@ -1,0 +1,49 @@
+<body>
+<div class="row">
+  <div class="column">
+    <%= "First Name: " %>
+    <%= @user.firstName %><br>
+    <%= "Last Name: " %>
+    <%= @user.lastName %><br>
+    <%= "Email: " %>
+    <%= @user.email %><br>
+    <%= "University: " %>
+    <%= @user.university %><br>
+    <%= "Super Administrator?" %>
+    <% if @user.SuperAdmin %>
+        Yes
+    <% else %>
+        No
+    <% end %><br>
+    <%= "Organizational Admin?" %>
+    <% if @user.OrgAdmin %>
+      Yes
+    <% else %>
+      No
+    <% end %><br>
+    <%= "Instructor?" %>
+    <% if @user.Instructor %>
+      Yes
+    <% else %>
+      No
+    <% end %><br>
+    <%= "Student?" %>
+    <% if @user.Student %>
+      Yes
+    <% else  %>
+      No
+    <% end %><br>
+    <%= "Approved?" %>
+    <% if @user.approved %>
+      Yes
+    <% else %>
+      No
+    <% end %><br>
+
+  </div>
+
+  <div class="column">
+    <%#= link_to "Edit User", admin_user_edit_path(@user) %>
+  </div>
+</div>
+</body>
