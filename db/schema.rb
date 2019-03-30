@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_30_205906) do
+ActiveRecord::Schema.define(version: 2019_03_30_224948) do
+
+  create_table "courses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.integer "teacher"
+    t.string "semester"
+    t.integer "year"
+    t.string "subject"
+    t.string "coursenum"
+    t.string "section"
+    t.integer "randID"
+  end
 
   create_table "students", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -43,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_03_30_205906) do
     t.boolean "OrgAdmin"
     t.boolean "SuperAdmin"
     t.boolean "approved", default: false
+    t.integer "UserID"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

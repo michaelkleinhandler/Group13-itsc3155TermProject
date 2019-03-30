@@ -1,4 +1,5 @@
 class CourseController < ApplicationController
+  before_save :gen_course_ID
 
   def new
     @course = Course.new
@@ -39,6 +40,12 @@ class CourseController < ApplicationController
 
    redirect_to root_path
  end
+
+  def gen_course_ID
+    self.randID = rand (1000000..9999999)
+
+  end
+
 
   private
   def course_params

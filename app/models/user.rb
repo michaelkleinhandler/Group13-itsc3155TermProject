@@ -8,5 +8,10 @@ class User < ApplicationRecord
   has_many :instructors
   has_many :gProjects
   has_many :studyGroups
+  before_save :set_uid
+
+  def set_uid
+    self.UserID = rand (1000000..9999999)
+  end
 
 end
