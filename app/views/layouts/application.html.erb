@@ -4,6 +4,19 @@
 <html>
 
 <head>
+
+  <div id="buttonWrapper">
+    <% if not user_signed_in? %>
+      You are not signed in
+    <% else %>
+    <div id="userAck">
+      Hello, <%= current_user.firstName %>!
+      <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
+      <%= link_to('Edit Profile', edit_user_registration_path) %>
+      </div>
+    <% end %>
+    
+  </div>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <a href="/"><h1 id="title">CollaboRATE</h1></a>
@@ -15,25 +28,20 @@
     <titleBar2></titleBar2>
     <titleBar3></titleBar3>
   </div>
-
-
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
 </head>
+
+<div class="alertBar">
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+</div>
 
 <%#= yield %>
 
-<body>
-
-
-<div class="row">
-  <div class="column">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-  </div>
+<div class="container">
+  <body>
+  <%= yield %>
+  </body>
 </div>
-<%= yield %>
-
-</body>
 </html>
