@@ -3,9 +3,12 @@ class AdminController < ApplicationController
 
 
   def adminList
-    @checkFor = current_user
-    authorize @checkFor
+    authorize current_user
     @users = User.all
+  end
+
+  def adminDash
+    authorize current_user
   end
 
 

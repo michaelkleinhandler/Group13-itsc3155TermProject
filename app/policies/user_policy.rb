@@ -6,7 +6,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def adminList?
-    registered?
+    user.SuperAdmin?
+  end
+
+  def adminDash?
+    user.SuperAdmin?
   end
 
   def show?
