@@ -1,5 +1,15 @@
 <% @users.each do |user| %>
-  <li>
-    <%= link_to user.email, show_user_path(user) %>
-  </li>
+  <table>
+    <th>Email</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>University</th>
+    
+    <tr>
+      <td><%= link_to user.email, show_user_path(user) %></td>
+      <td><%= user.firstName %></td>
+      <td><%= user.lastName %></td>
+      <td><%= user.university %></td>
+    </tr>
+  </table>
 <% end %>

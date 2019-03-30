@@ -1,32 +1,52 @@
-<div id="userNav">
-  
- <a>
-    <form action="myprofile">
-      <input type="submit" value="My Profile" />
-    </form>
-</a>
 
-<a>  
-  <form action="myclasses">
-    <input type="submit" value="My Classes" />
-  </form>
-</a>
-
-<a>
-  <form action="myProjects">
-    <input type="submit" value="My Projects" />
-  </form>
-</a>
-
-<a>
-  <form action="enrollme">
-    <input type="submit" value="Enroll in a course" />
-  </form>
-</a>
-
-<a>
-  <form action="teacherPortal">
-    <input type="submit" value="Courses I am teaching"/>
-  </form>
-</a>
+<body>
+<div class="row" , style="margin-top:2%;">
+  <h1 id="dash">My Dashboard</h1>
 </div>
+
+<div class="row" , style="margin-top:2%;">
+<div id="userNav">
+     <a>
+        <form action="myprofile">
+          <input type="submit" value="My Profile" />
+        </form>
+    </a>
+    
+    <a>  
+      <form action="myclasses">
+        <input type="submit" value="My Classes" />
+      </form>
+    </a>
+    
+    <a>
+      <form action="myProjects">
+        <input type="submit" value="My Projects" />
+      </form>
+    </a>
+    
+    <a>
+      <form action="enrollme">
+        <input type="submit" value="Enroll in a course" />
+      </form>
+    </a>
+    <% if current_user.Instructor? %>
+                <a>
+                  <form action="teacherPortal">
+                    <input type="submit" value="Courses I am teaching"/>
+                  </form>
+                </a>
+    <% end %>
+    
+    <% if current_user.SuperAdmin? %>
+                <a>
+                  <form action="admin">
+                    <input type="submit" value="Admin Dashboard"/>
+                  </form>
+                </a>
+    <% end %>
+
+
+</div>
+</div>
+
+</body>
