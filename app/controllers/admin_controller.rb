@@ -11,5 +11,11 @@ class AdminController < ApplicationController
     authorize current_user
   end
 
+  private
+
+  def user_params
+  params.permit(:email)
+  end
+
 
 end

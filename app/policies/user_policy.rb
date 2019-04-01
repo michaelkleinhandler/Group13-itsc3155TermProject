@@ -17,6 +17,23 @@ class UserPolicy < ApplicationPolicy
     user.SuperAdmin?
   end
 
+  def edit?
+    user.SuperAdmin?
+  end
+
+  def adminUpdate?
+    user.SuperAdmin?
+  end
+
+  def adminEdit?
+    user.SuperAdmin?
+  end
+
+  def update?
+    registered?
+  end
+
+
   class Scope
     attr_reader :user, :scope
 

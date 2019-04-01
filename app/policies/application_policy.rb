@@ -38,6 +38,10 @@ class ApplicationPolicy
     (user.SuperAdmin? or user.Instructor? or user.Student?) and user.approved?
   end
 
+  def adminUpdate?
+    user.SuperAdmin?
+  end
+
   class Scope
     attr_reader :user, :scope
 

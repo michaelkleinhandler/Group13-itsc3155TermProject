@@ -1,0 +1,25 @@
+<!--<h2>Edit <%#= resource_name.to_s.humanize %></h2>-->
+
+<%= form_for(@user) do |f| %>
+  <%#= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field" id = "userEditInput">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div><br>
+
+
+  User Permissions: <br>
+  <ul>
+    <li><%= f.label "Student" %><%= f.check_box :Student %></li>
+    <li><%= f.label "Instructor" %><%= f.check_box :Instructor %></li>
+    <li><%= f.label "Organization Admin" %><%= f.check_box :OrgAdmin %></li>
+    <li><%= f.label "Super Administrator" %><%= f.check_box :SuperAdmin %></li>
+    <li><%= f.label "Approved" %><%= f.check_box :approved %></li>
+  </ul><br>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+<%= link_to "Back", :back %>
