@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def edit
     authorize current_user
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
   end
 
   def adminEdit
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def adminUpdate
     authorize current_user
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if @user.update(adUser_params)
       redirect_to '/admin'
     else
       render 'adminEdit'
@@ -39,14 +39,14 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to root_path
     else
-      render 'edit'
+      render '/users/registrations/edit'
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:firstName, :lastName, :SuperAdmin, :Instructor, :Student, :OrgAdmin, :email, :approved)
+    params.require(:user).permit(:firstName, :lastName, :email, :password, :Instructor, :SuperAdmin, :OrgAdmin, :Student, :Approved)
   end
 
 
