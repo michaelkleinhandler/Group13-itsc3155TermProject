@@ -1,3 +1,24 @@
-<h1>Hello. Who is it please?</h1>
-
-<%= current_user.firstName %>
+<h1>Teacher Portal</h1>
+<% if current_user.Instructor? %>
+    <%= current_user.firstName %>
+    <a>
+        <form action="course/new">
+          <input type="submit" value="Create a Course"/>
+        </form>
+      </a>
+    <table>
+        <th>Course Number</th>
+        
+        
+        
+        
+    </table>
+    
+    
+    
+    
+    
+    <% else %>
+    <h1>You shouldn't be here</h1>
+    <% end %>
+    

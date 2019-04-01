@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   get 'users/:id' => 'users#show', :as => 'show_user'
   get 'teacherportal' => 'teacher#teacherPortal'
   get 'admin/edit/:id' => 'users#adminEdit', :as => 'admin_edit'
+  get 'course/new'
+  resources :course
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

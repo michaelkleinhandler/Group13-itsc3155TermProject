@@ -29,20 +29,6 @@
   </div>
   <br>
 
-  User Permissions: <br>
-  <ul>
-    <li><%= f.label "Student" %><%= f.check_box :Student %></li>
-    <li><%= f.label "Instructor" %><%= f.check_box :Instructor %></li>
-    <li><%= f.label "Organization Admin" %><%= f.check_box :OrgAdmin %></li>
-    <li><%= f.label "Super Administrator" %><%= f.check_box :SuperAdmin %></li>
-    <li><%= f.label "Approved" %><%= f.check_box :approved %></li>
-  </ul><br>
-
-  <div id = "userEditInput">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
