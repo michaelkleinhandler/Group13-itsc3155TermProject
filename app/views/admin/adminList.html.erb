@@ -1,5 +1,32 @@
-<% @users.each do |user| %>
-  <li>
-    <%= link_to user.email, show_user_path(user) %>
-  </li>
+<table>
+  <th>Email</th>
+  <th>First Name</th>
+  <th>Last Name</th>
+  <th>University</th>
+  <th>Is Student?</th>
+  <th>Is Instructor?</th>
+  <th>Is Organization Admin?</th>
+  <th>Is Super Admin</th>
+  <th>Is Active</th>
+  <th>Links</th>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email%></td>
+      <td><%= user.firstName %></td>
+      <td><%= user.lastName %></td>
+      <td><%= user.university %></td>
+      <td><%= user.Student? %></td>
+      <td><%= user.Instructor? %></td>
+      <td><%= user.OrgAdmin? %></td>
+      <td><%= user.SuperAdmin? %></td>
+      <td><%= user.approved? %></td>
+      <td>
+        <%=link_to 'Show', show_user_path(user) %><br>
+        <%= link_to 'Edit', edit_user_registration_path(user) %>
+
+      </td>
+
+    </tr>
 <% end %>
+</table>

@@ -1,13 +1,14 @@
 <body>
-  <div class="container">
-    <div class="row" , style="margin-top:2%;">
-        <% if not user_signed_in? %>
-          <div id="formWrapper">
-            <%= render 'userLogin' %>
-          </div>
-        <% else %>
-          <%= render 'userNav' %>
-        <% end %>
+
+  <% if not user_signed_in? %>
+    <div id="formWrapper" class="row">
+      <%= render 'userLogin' %>
     </div>
+  <% else %>
+    <h1>My Dashboard</h1>
+    <div class="row">
+      <%= render 'userNav' %>
+  <% end %>
   </div>
+</div>
 </body>
