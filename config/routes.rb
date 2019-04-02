@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :courses
+  resources :universities
 
 
   get 'welcome/index'
