@@ -1,28 +1,41 @@
-class CourseController < ApplicationController
+class CoursesController < ApplicationController
+  include Pundit
+  after_action :verify_authorized
+
+
+  def show
+    authorize current_user
+    @course = Course.find(params[:id])
+  end
 
   def new
-    @course = Course.new()
+    authorize Course
+    @course = Course.new
   end
 
   def create
+    authorize Course
     @course = Course.new(course_params)
-
+    @course.teacher = current_user.UserID
     if @course.save
       redirect_to @course
     else
-      render 'new'
+      render 'newCourse'
     end
   end
 
   def index
+    authorize Course
     @course = Course.all
   end
 
   def edit
+    authorize Course
     @course = Course.find(params[:id])
   end
 
   def update
+    authorize Course
     @course = Course.find(params[:id])
 
     if @course.update(course_params)
@@ -34,9 +47,9 @@ class CourseController < ApplicationController
   end
 
  def destroy
+   authorize Course
    @course = Course.find(params[:id])
    @course.destroy
-
    redirect_to root_path
  end
 
@@ -45,7 +58,7 @@ class CourseController < ApplicationController
   private
 
   def course_params
-    params.require(:title).require(:teacher).require(:semester).require(:year).require(:subject).require(:course).require(:section)
+    params.require(:course).permit([:title, :semester, :year, :subject, :courses, :section, :teacher, :coursenum])
   end
 
 end

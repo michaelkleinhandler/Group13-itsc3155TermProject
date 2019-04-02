@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   }
 
   resources :users
+  resources :courses
+
 
   get 'welcome/index'
   root 'welcome#index'
@@ -14,7 +16,8 @@ Rails.application.routes.draw do
   get 'users/:id' => 'users#show', :as => 'show_user'
   get 'teacherportal' => 'teacher#teacherPortal'
   get 'admin/edit/:id' => 'users#adminEdit', :as => 'admin_edit'
-  get 'course/new'
-  resources :course
+  patch 'admin/:id/togApp' => 'users#toggleApproved', :as => 'togApp'
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

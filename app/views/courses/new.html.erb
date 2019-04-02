@@ -1,0 +1,19 @@
+<h1>Create a new course</h1>
+
+<%= form_for @course, :url => { :action => "create" } do |f| %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+  <%= f.label :semester %>
+  <%= f.text_field :semester %><br>
+  <%= f.label :year %>
+  <%= f.text_field :year %><br>
+  <%= f.label :subject %>
+  <%= f.text_field :subject %><br>
+  <%= f.label :coursenum %>
+  <%= f.text_field :coursenum %><br>
+  <%= f.label :section %>
+  <%= f.text_field :section %><br>
+  <%= f.submit %>
+
+<% end %>

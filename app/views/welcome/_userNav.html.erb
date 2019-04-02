@@ -34,7 +34,7 @@
         </a>
       <% end %>
 
-      <% if current_user.SuperAdmin? %>
+      <% if current_user.SuperAdmin? or current_user.OrgAdmin? %>
         <a>
           <form action="admin">
             <input type="submit" value="Admin Dashboard"/>

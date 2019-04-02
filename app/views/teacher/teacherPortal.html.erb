@@ -2,7 +2,7 @@
 <% if current_user.Instructor? %>
     <%= current_user.firstName %>
     <a>
-        <form action="course/new">
+        <form action="courses/new">
           <input type="submit" value="Create a Course"/>
         </form>
       </a>

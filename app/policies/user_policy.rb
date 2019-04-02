@@ -6,33 +6,46 @@ class UserPolicy < ApplicationPolicy
   end
 
   def adminList?
-    user.SuperAdmin?
+    isAdmin?
   end
 
   def adminDash?
-    user.SuperAdmin?
+    isAdmin?
   end
 
   def show?
-    user.SuperAdmin?
+    isAdmin?
   end
 
   def edit?
-    user.SuperAdmin?
+    isAdmin?
   end
 
   def adminUpdate?
-    user.SuperAdmin?
+    isAdmin?
   end
 
   def adminEdit?
-    user.SuperAdmin?
+    if (@user.OrgAdmin? and @user.university == @record.university) or @user.SuperAdmin?
+      true
+    end
   end
 
   def update?
     registered?
   end
 
+  def new?
+    registered?
+  end
+
+  def toggleApproved?
+    user.SuperAdmin?
+  end
+
+  def isAdmin?
+    (user.SuperAdmin? and user.approved?) or (user.OrgAdmin? and user.approved)
+  end
 
   class Scope
     attr_reader :user, :scope

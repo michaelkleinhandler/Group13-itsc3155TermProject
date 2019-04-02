@@ -11,22 +11,30 @@
   <th>Links</th>
 
   <% @users.each do |user| %>
-    <tr>
-      <td><%= user.email%></td>
-      <td><%= user.firstName %></td>
-      <td><%= user.lastName %></td>
-      <td><%= user.university %></td>
-      <td><%= user.Student? %></td>
-      <td><%= user.Instructor? %></td>
-      <td><%= user.OrgAdmin? %></td>
-      <td><%= user.SuperAdmin? %></td>
-      <td><%= user.approved? %></td>
-      <td>
-        <%=link_to 'Show', show_user_path(user) %><br>
-        <%= link_to 'Edit', admin_edit_path(user) %>
+    <% if (current_user.university == user.university and current_user.OrgAdmin?) or  current_user.SuperAdmin? %>
+      <tr>
+        <td><%= user.email%></td>
+        <td><%= user.firstName %></td>
+        <td><%= user.lastName %></td>
+        <td><%= user.university %></td>
+        <td><%= user.Student? %></td>
+        <td><%= user.Instructor? %></td>
+        <td><%= user.OrgAdmin? %></td>
+        <td><%= user.SuperAdmin? %></td>
+        <td>
+          <% if user.approved? %>
+            <%= link_to 'True', togApp_path(user), method: :patch %>
+          <% else %>
+            <%= link_to 'False', togApp_path(user), method: :patch %>
+          <%end %>
+        </td>
+        <td>
+          <%=link_to 'Show', show_user_path(user) %><br>
+          <%= link_to 'Edit', admin_edit_path(user) %>
 
-      </td>
+        </td>
 
-    </tr>
-<% end %>
+      </tr>
+  <% end %>
+    <%end %>
 </table>
