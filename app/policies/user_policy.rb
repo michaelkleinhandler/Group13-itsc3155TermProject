@@ -43,6 +43,12 @@ class UserPolicy < ApplicationPolicy
     user.SuperAdmin?
   end
 
+  def toggleSuperAdmin?
+    if (@user.UserID != @record.UserID) and @user.SuperAdmin
+      true
+    end
+  end
+
   def isAdmin?
     (user.SuperAdmin? and user.approved?) or (user.OrgAdmin? and user.approved)
   end

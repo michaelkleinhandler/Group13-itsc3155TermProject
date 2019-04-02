@@ -20,12 +20,18 @@
         <td><%= user.Student? %></td>
         <td><%= user.Instructor? %></td>
         <td><%= user.OrgAdmin? %></td>
-        <td><%= user.SuperAdmin? %></td>
+        <td>
+          <% if user.SuperAdmin? %>
+            <%= button_to 'True', togSA_path(user), method: :patch %>
+          <% else %>
+            <%= button_to 'False', togSA_path(user), method: :patch %>
+          <%end %>
+        </td>
         <td>
           <% if user.approved? %>
-            <%= link_to 'True', togApp_path(user), method: :patch %>
+            <%= button_to 'True', togApp_path(user), method: :patch %>
           <% else %>
-            <%= link_to 'False', togApp_path(user), method: :patch %>
+            <%= button_to 'False', togApp_path(user), method: :patch %>
           <%end %>
         </td>
         <td>

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'teacherportal' => 'teacher#teacherPortal'
   get 'admin/edit/:id' => 'users#adminEdit', :as => 'admin_edit'
   patch 'admin/:id/togApp' => 'users#toggleApproved', :as => 'togApp'
+  patch 'admin/:id/togSA' => 'users#toggleSuperAdmin', :as => 'togSA'
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

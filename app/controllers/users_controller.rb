@@ -57,6 +57,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def toggleSuperAdmin
+    authorize User.find(params[:id])
+    @user = User.find(params[:id])
+    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university == @user.university)
+      if @user.SuperAdmin and (current_user.UserID != @user.UserID)
+        @user.SuperAdmin = false
+      elsif not @user.SuperAdmin
+        @user.SuperAdmin = true
+      end
+      @user.save
+      redirect_to '/admin/userlist'
+    end
+  end
+
   private
 
   def user_params
