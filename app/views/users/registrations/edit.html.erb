@@ -28,14 +28,6 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <td>
-    <% if @user.approved? %>
-      <%= button_to 'Approved: True', togApp_path(@user), method: :patch %>
-    <% else %>
-      <%= button_to 'Approved: False', togApp_path(@user), method: :patch %>
-    <%end %>
-  </td>
-
   <br>
 
   <div class="actions">

@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     if @user.update(adUser_params)
       redirect_to '/admin'
     else
-      render 'adminEdit'
+      render '/users/adminEdit'
     end
   end
 
@@ -39,9 +39,13 @@ class UsersController < ApplicationController
     authorize current_user
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to(root_path)
+      if current_user.SuperAdmin? or current_user.OrgAdmin?
+        redirect_to '/admin/userlist'
+      else
+        redirect_to(root_path)
+      end
     else
-      render '/users/registrations/edit'
+        render '/users/registrations/edit'
     end
   end
 
