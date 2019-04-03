@@ -64,7 +64,7 @@ titleBar3 {
 
 
 vertBar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 3%;
@@ -100,6 +100,7 @@ vertBar {
 
 #buttonWrapper {
   position: absolute;
+  height:5%;
   top: 0%;
   right:10%;
   float: right;
@@ -110,8 +111,8 @@ vertBar {
 .row {
   display: flex;
   position:relative;
-  top:5%;
-  width:94%;
+  //top:5%;
+  width:100%;
   align: center;
   z-index: 20;
 }

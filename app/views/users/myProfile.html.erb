@@ -1,13 +1,16 @@
 <body>
 <div class="row">
-  <div class="column">
-    <%= image_tag current_user.image, style: 'height:200px;width:auto;' %>
+    <%= image_tag @user.image, style: 'height:200px;width:auto;' %>
   </div>
-  <div class="column">
     <div class="login">
-      First Name: <%= current_user.firstName %><br>
-      Last Name: <%= current_user.lastName %><br>
+      <p><%= @user.firstName %> <%= @user.lastName %><br></p>
+      <%= @user.UserID %><br>
+
+      <%=  @user.uniName  %>
+
+      
+<!--      <ul>-->
+<!--         <li><%#= current_user.classes %>  </li>-->
+<!--      </ul>-->
     </div>
-  </div>
-</div>
 </body>

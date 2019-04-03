@@ -10,4 +10,16 @@ class TeacherPolicy < ApplicationPolicy
     false
   end
 
+  def new
+    registered?
+  end
+
+  def show?
+    registered?
+  end
+
+  def create?
+    registered?
+  end
+
 end

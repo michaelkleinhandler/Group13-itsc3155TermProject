@@ -1,32 +1,49 @@
-<div id="userNav">
-  
- <a>
-    <form action="myprofile">
-      <input type="submit" value="My Profile" />
-    </form>
-</a>
+<body>
 
-<a>  
-  <form action="myclasses">
-    <input type="submit" value="My Classes" />
-  </form>
-</a>
+<div class="row">
+  <div class="column">
+    <div id="userNav">
+      <% if current_user.approved? %>
+        <a>
+          <form action="myprofile">
+            <input type="submit" value="My Profile"/>
+          </form>
+        </a>
+        <% if current_user.Student? %>
+          <a>
+            <form action="myclasses">
+              <input type="submit" value="My Classes"/>
+            </form>
+          </a>
 
-<a>
-  <form action="myProjects">
-    <input type="submit" value="My Projects" />
-  </form>
-</a>
+          <a>
+            <form action="enrollme">
+              <input type="submit" value="Enroll in a course"/>
+            </form>
+          </a>
+        <% end %>
+        <% if current_user.Instructor? %>
+          <a>
+            <form action="teacherportal">
+              <input type="submit" value="Courses I am teaching"/>
+            </form>
+          </a>
+        <% end %>
 
-<a>
-  <form action="enrollme">
-    <input type="submit" value="Enroll in a course" />
-  </form>
-</a>
+        <% if current_user.SuperAdmin? or current_user.OrgAdmin? %>
+          <a>
+            <form action="admin">
+              <input type="submit" value="Admin Dashboard"/>
+            </form>
+          </a>
+        <% end %>
+      <% else %>
+          <h1>Get an admin to approve your account to begin using CollaboRATE</h1>
+      <% end %>
 
-<a>
-  <form action="teacherPortal">
-    <input type="submit" value="Courses I am teaching"/>
-  </form>
-</a>
+
+    </div>
+  </div>
 </div>
+
+</body>
