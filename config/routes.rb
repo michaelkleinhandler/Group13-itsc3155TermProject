@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   get 'admin/edit/:id' => 'users#adminEdit', :as => 'admin_edit'
   patch 'admin/:id/togApp' => 'users#toggleApproved', :as => 'togApp'
   patch 'admin/:id/togSA' => 'users#toggleSuperAdmin', :as => 'togSA'
+  patch 'admin/:id/togIns' => 'users#toggleInstructor', :as => 'togIns'
+  patch 'admin/:id/togOrgAd' => 'users#toggleOrgAdmin', :as => 'togOA'
+  patch 'admin/:id/togStudent' => 'users#toggleStudent', :as => 'togStu'
+
 
 
 

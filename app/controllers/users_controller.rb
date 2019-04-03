@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   def toggleApproved
     authorize current_user
     @user = User.find(params[:id])
-    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university == @user.university)
+    # if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university == @user.university)
       if @user.approved
         @user.approved = false
       elsif not @user.approved
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
       end
       @user.save
       redirect_to '/admin/userlist'
-    end
+    # end
   end
 
   def toggleSuperAdmin
@@ -67,6 +67,48 @@ class UsersController < ApplicationController
         @user.SuperAdmin = false
       elsif not @user.SuperAdmin
         @user.SuperAdmin = true
+      end
+      @user.save
+      redirect_to '/admin/userlist'
+    end
+  end
+
+  def toggleInstructor
+    authorize User.find(params[:id])
+    @user = User.find(params[:id])
+    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university == @user.university)
+      if @user.Instructor?
+        @user.Instructor = false
+      elsif not @user.Instructor?
+        @user.Instructor = true
+      end
+      @user.save
+      redirect_to '/admin/userlist'
+    end
+  end
+
+  def toggleStudent
+    authorize User.find(params[:id])
+    @user = User.find(params[:id])
+    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university == @user.university)
+      if @user.Student?
+        @user.Student = false
+      elsif not @user.Student?
+        @user.Student = true
+      end
+      @user.save
+      redirect_to '/admin/userlist'
+    end
+  end
+
+  def toggleOrgAdmin
+    authorize User.find(params[:id])
+    @user = User.find(params[:id])
+    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university == @user.university)
+      if @user.OrgAdmin?
+        @user.OrgAdmin = false
+      elsif not @user.OrgAdmin?
+        @user.OrgAdmin = true
       end
       @user.save
       redirect_to '/admin/userlist'

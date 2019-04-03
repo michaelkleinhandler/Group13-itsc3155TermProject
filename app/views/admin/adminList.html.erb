@@ -15,9 +15,27 @@
         <td><%= user.email%></td>
         <td><%= user.firstName %></td>
         <td><%= user.lastName %></td>
-        <td><%= user.Student? %></td>
-        <td><%= user.Instructor? %></td>
-        <td><%= user.OrgAdmin? %></td>
+        <td>
+          <% if user.Student? %>
+            <%= button_to 'True', togStu_path(user), method: :patch %>
+          <% else %>
+            <%= button_to 'False', togStu_path(user), method: :patch %>
+          <%end %>
+        </td>
+        <td>
+          <% if user.Instructor? %>
+            <%= button_to 'True', togIns_path(user), method: :patch %>
+          <% else %>
+            <%= button_to 'False', togIns_path(user), method: :patch %>
+          <%end %>
+        </td>
+        <td>
+          <% if user.OrgAdmin? %>
+            <%= button_to 'True', togOA_path(user), method: :patch %>
+          <% else %>
+            <%= button_to 'False', togOA_path(user), method: :patch %>
+          <%end %>
+        </td>
         <td>
           <% if user.SuperAdmin? %>
             <%= button_to 'True', togSA_path(user), method: :patch %>

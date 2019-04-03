@@ -40,7 +40,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def toggleApproved?
-    if (@user.SuperAdmin?) or (@user.OrgAdmin? and @user.uni_id == @record.uni_id)
+    if ((@user.SuperAdmin?) or (@user.OrgAdmin? and @user.uni_id == @record.uni_id)) and @user.UserID != @record.UserID
       true
     end
   end
@@ -51,8 +51,25 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  def toggleInstructor?
+    mayChange?
+  end
+
+  def toggleStudent?
+    mayChange?
+  end
+
+  def toggleOrgAdmin?
+    mayChange?
+  end
+
+
   def isAdmin?
-    (user.SuperAdmin? and user.approved?) or (user.OrgAdmin? and user.approved)
+    (@user.SuperAdmin? and @user.approved?) or (@user.OrgAdmin? and @user.approved)
+  end
+
+  def mayChange?
+    (@user.SuperAdmin? and @user.approved?) or ((@user.OrgAdmin? and @user.approved) and @user.uni_id == @record.uni_id)
   end
 
   class Scope
