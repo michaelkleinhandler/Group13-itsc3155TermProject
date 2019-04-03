@@ -26,7 +26,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def adminEdit?
-    if (@user.OrgAdmin? and @user.university == @record.university) or @user.SuperAdmin?
+    if (@user.OrgAdmin? and @user.uni_id == @record.uni_id) or @user.SuperAdmin?
       true
     end
   end
@@ -40,7 +40,9 @@ class UserPolicy < ApplicationPolicy
   end
 
   def toggleApproved?
-    user.SuperAdmin?
+    if (@user.SuperAdmin?) or (@user.OrgAdmin? and @user.uni_id == @record.uni_id)
+      true
+    end
   end
 
   def toggleSuperAdmin?

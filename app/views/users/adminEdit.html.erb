@@ -18,6 +18,11 @@
     <li><%= f.label "Approved" %><%= f.check_box :approved %></li>
   </ul><br>
 
+  <div class="field">
+    <%= f.label 'University'%><br/>
+    <%= f.select(:uni_id, University.all.pluck(:uniName, :uni_id)) %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

@@ -2,21 +2,19 @@
   <th>Email</th>
   <th>First Name</th>
   <th>Last Name</th>
-  <th>University</th>
-  <th>Is Student?</th>
-  <th>Is Instructor?</th>
-  <th>Is Organization Admin?</th>
-  <th>Is Super Admin</th>
-  <th>Is Active</th>
+  <th>Student?</th>
+  <th>Instructor?</th>
+  <th>Organization Admin?</th>
+  <th>Super Admin</th>
+  <th>Approved</th>
   <th>Links</th>
 
   <% @users.each do |user| %>
-    <% if (current_user.university == user.university and current_user.OrgAdmin?) or  current_user.SuperAdmin? %>
+    <% if (current_user.uni_id == user.uni_id and current_user.OrgAdmin?) or  current_user.SuperAdmin? %>
       <tr>
         <td><%= user.email%></td>
         <td><%= user.firstName %></td>
         <td><%= user.lastName %></td>
-        <td><%= user.university %></td>
         <td><%= user.Student? %></td>
         <td><%= user.Instructor? %></td>
         <td><%= user.OrgAdmin? %></td>

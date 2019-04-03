@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   after_action :verify_authorized
 
+
   def show
     @checkFor = current_user
     authorize @checkFor
@@ -9,7 +10,8 @@ class UsersController < ApplicationController
 
   def myProfile
     @user = current_user
-    authorize @user
+    @checkFor = current_user
+    authorize @checkFor
   end
 
   def edit
@@ -74,7 +76,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit([:firstName, :lastName, :email, :password, :Instructor, :SuperAdmin, :OrgAdmin, :Student, :approved])
+    params.require(:user).permit([:firstName, :lastName, :email, :password, :Instructor, :SuperAdmin, :OrgAdmin, :Student, :approved, :uni_id])
   end
 
 

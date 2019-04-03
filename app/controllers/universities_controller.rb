@@ -1,7 +1,7 @@
 class UniversitiesController < ApplicationController
   def new
     @university = University.new
-    @universities = University.all
+    uniList
   end
 
   def create
@@ -16,6 +16,11 @@ class UniversitiesController < ApplicationController
   def uniList
     @universities = University.all
   end
+
+  def show
+    @universities = University.all
+  end
+
 
   private
 
