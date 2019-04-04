@@ -25,7 +25,11 @@ class User < ApplicationRecord
 
   def uniName
     @user = self
-    University.find_by(uni_id: @user.uni_id).uniName
+    if University.find_by(uni_id: @user.uni_id)
+      University.find_by(uni_id: @user.uni_id).uniName
+    else
+      "Invalid University"
+    end
   end
 
 
