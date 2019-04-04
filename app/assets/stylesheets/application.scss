@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-datepicker
  */
 
 //Global color variables
@@ -227,5 +228,6 @@ vertBar {
   top: 10px;
   
 }
+
 
 

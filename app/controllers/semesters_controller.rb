@@ -1,11 +1,32 @@
 class SemestersController < ApplicationController
 
+  def new
+    @semester = Semester.new
+    semList
+  end
+
+
+  def create
+    @semester = Semester.new(semester_params)
+    if @semester.save
+      redirect_to '/admin'
+    else
+      render 'new'
+    end
+  end
+
+  def semList
+    @semesters = Semester.all
+
+  end
+
+
 
 
   private
 
   def semester_params
-    params.require(:user).permit([:firstName, :lastName, :email, :password, :Instructor, :SuperAdmin, :OrgAdmin, :Student, :approved, :uni_id])
+    params.require(:semester).permit([:name, :beginDate, :endDate, :uni_id])
   end
 
 end

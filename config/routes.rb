@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users
   resources :courses
   resources :universities
-
+  resources :semesters
 
   get 'welcome/index'
   root 'welcome#index'
