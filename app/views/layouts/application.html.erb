@@ -19,7 +19,11 @@
   </div>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <a href="/"><h1 id="title">CollaboRATE</h1></a>
+  <% if user_signed_in? and current_user.uniName %>
+    <a href="/"><h1 id="title">CollaboRATE@<%= current_user.uniName %></h1></a>
+  <% else %>
+    <a href="/"><h1 id="title">CollaboRATE</h1></a>
+  <% end %>
   <div id="colorCol">
     <vertBar></vertBar>
   </div>
