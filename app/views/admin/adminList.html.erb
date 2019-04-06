@@ -10,7 +10,7 @@
   <th>Links</th>
 
   <% @users.each do |user| %>
-    <% if (current_user.uni_id == user.uni_id and current_user.OrgAdmin?) or  current_user.SuperAdmin? %>
+    <% if (current_user.university_id == user.university_id and current_user.OrgAdmin?) or  current_user.SuperAdmin? %>
       <tr>
         <td><%= user.email%></td>
         <td><%= user.firstName %></td>

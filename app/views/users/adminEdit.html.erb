@@ -11,17 +11,17 @@
 
   <div class="field" id = "userEditInput">
     <%= f.label 'First Name' %><br />
-    <%= f.email_field :firstName%>
+    <%= f.text_field :firstName%>
   </div><br>
 
   <div class="field" id = "userEditInput">
     <%= f.label 'Last Name' %><br />
-    <%= f.email_field :lastName%>
+    <%= f.text_field :lastName%>
   </div><br>
 
   <div class="field">
     <%= f.label 'University'%><br/>
-    <%= f.select(:uni_id, University.all.pluck(:uniName, :uni_id)) %>
+    <%= f.select(:university_id, University.all.pluck(:uniName, :id)) %>
   </div>
 
   <div class="actions">

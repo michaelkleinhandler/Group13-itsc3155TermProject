@@ -26,7 +26,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def adminEdit?
-    if (@user.OrgAdmin? and @user.uni_id == @record.uni_id) or @user.SuperAdmin?
+    if (@user.OrgAdmin? and @user.university_id == @record.university_id) or @user.SuperAdmin?
       true
     end
   end
@@ -70,6 +70,10 @@ class UserPolicy < ApplicationPolicy
 
   def mayChange?
     (@user.SuperAdmin? and @user.approved?) or ((@user.OrgAdmin? and @user.approved) and @user.uni_id == @record.uni_id)
+  end
+
+  def teacherPortal?
+    true
   end
 
   class Scope

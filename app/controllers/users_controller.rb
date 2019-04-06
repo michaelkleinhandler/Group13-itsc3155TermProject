@@ -9,9 +9,10 @@ class UsersController < ApplicationController
   end
 
   def myProfile
-    @user = current_user
     @checkFor = current_user
     authorize @checkFor
+    @user = current_user
+    # @courses = @user.courses.all
   end
 
   def edit
@@ -67,7 +68,7 @@ class UsersController < ApplicationController
     authorize User.find(params[:id])
     @user = User.find(params[:id])
     if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university == @user.university)
-      if @user.SuperAdmin and (current_user.UserID != @user.UserID)
+      if @user.SuperAdmin and (current_user.id != @user.id)
         @user.SuperAdmin = false
       elsif not @user.SuperAdmin
         @user.SuperAdmin = true
@@ -122,7 +123,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit([:firstName, :lastName, :email, :password, :Instructor, :SuperAdmin, :OrgAdmin, :Student, :approved, :uni_id])
+    params.require(:user).permit([:id, :firstName, :lastName, :email, :password, :Instructor, :SuperAdmin, :OrgAdmin, :Student, :approved, :university_id])
   end
 
 

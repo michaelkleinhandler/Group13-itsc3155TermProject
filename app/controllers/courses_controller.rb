@@ -1,10 +1,9 @@
 class CoursesController < ApplicationController
-  include Pundit
+  before_action :authenticate_user!
   after_action :verify_authorized
 
-
   def show
-    authorize current_user
+    authorize Course
     @course = Course.find(params[:id])
   end
 
@@ -16,11 +15,10 @@ class CoursesController < ApplicationController
   def create
     authorize Course
     @course = Course.new(course_params)
-    @course.teacher = current_user.UserID
     if @course.save
-      redirect_to @course
+      redirect_to '/teacherportal'
     else
-      render 'newCourse'
+      render 'courses/new'
     end
   end
 
@@ -58,7 +56,7 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit([:title, :semester, :year, :subject, :courses, :section, :teacher, :coursenum])
+    params.require(:course).permit([:title, :semester, :year, :subject, :section, :teacher, :coursenum, :course_id, :uni_id, :User_id])
   end
 
 end

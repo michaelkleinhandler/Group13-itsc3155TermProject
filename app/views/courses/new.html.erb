@@ -4,8 +4,10 @@
 
   <%= f.label :title %>
   <%= f.text_field :title %><br>
-  <%= f.label :semester %>
-  <%= f.text_field :semester %><br>
+  <div class="field">
+    <%= f.label 'Semester'%><br/>
+    <%= f.select(:semester, Semester.all.collect {|s| [ s.name, s.semester_id ] }) %>
+  </div>
   <%= f.label :year %>
   <%= f.text_field :year %><br>
   <%= f.label :subject %>
@@ -14,6 +16,8 @@
   <%= f.text_field :coursenum %><br>
   <%= f.label :section %>
   <%= f.text_field :section %><br>
+  <%= f.text_field :teacher, :value => current_user.id, :readonly => true %><br>
+  <%= f.text_field :uni_id, :value => current_user.university_id, :readonly => true %><br>
   <%= f.submit %>
 
 <% end %>
