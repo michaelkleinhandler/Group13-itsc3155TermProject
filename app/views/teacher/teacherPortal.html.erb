@@ -1,24 +1,24 @@
 <h1>Teacher Portal</h1>
-<% if current_user.Instructor? %>
-    <%= current_user.firstName %>
-    <a>
-        <form action="courses/new">
-          <input type="submit" value="Create a Course"/>
-        </form>
-      </a>
-    <table>
-        <th>Course Number</th>
-        
-        
-        
-        
-    </table>
-    
-    
-    
-    
-    
-    <% else %>
-    <h1>You shouldn't be here</h1>
+  <a>
+      <form action="courses/new">
+        <input type="submit" value="Create a Course"/>
+      </form>
+    </a>
+  <table>
+      <th>Subject</th>
+      <th>Course Number</th>
+      <th>Section</th>
+      <th>Semester</th>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.subject %></td>
+        <td><%= course.coursenum %></td>
+        <td><%= course.section %></td>
+        <td><%= course.Semester.name %></td>
+      </tr>
+
     <% end %>
+
+  </table>
+
     

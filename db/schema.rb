@@ -10,19 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_180557) do
+ActiveRecord::Schema.define(version: 2019_04_06_144808) do
 
   create_table "courses", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
     t.integer "teacher"
-    t.string "semester"
+    t.integer "semester"
     t.integer "year"
     t.string "subject"
     t.string "coursenum"
     t.string "section"
     t.integer "randID"
+    t.integer "User_id"
+    t.integer "uni_id"
+    t.index ["User_id"], name: "index_courses_on_User_id"
+    t.index ["uni_id"], name: "index_courses_on_uni_id"
+  end
+
+  create_table "courses_users", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "user_id"
+    t.index ["course_id"], name: "index_courses_users_on_course_id"
+    t.index ["user_id"], name: "index_courses_users_on_user_id"
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "course_id"
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
   create_table "semesters", force: :cascade do |t|
@@ -32,6 +52,8 @@ ActiveRecord::Schema.define(version: 2019_04_04_180557) do
     t.date "endDate"
     t.string "name"
     t.integer "uni_id"
+    t.integer "semester_id"
+    t.index ["semester_id"], name: "index_semesters_on_semester_id"
     t.index ["uni_id"], name: "index_semesters_on_uni_id"
   end
 
@@ -55,6 +77,7 @@ ActiveRecord::Schema.define(version: 2019_04_04_180557) do
     t.integer "uni_id"
     t.index ["uniID_id"], name: "index_universities_on_uniID_id"
     t.index ["uni_id"], name: "index_universities_on_uni_id"
+
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,11 +99,11 @@ ActiveRecord::Schema.define(version: 2019_04_04_180557) do
     t.boolean "OrgAdmin"
     t.boolean "SuperAdmin"
     t.boolean "approved", default: false
-    t.integer "UserID"
-    t.integer "uni_id"
     t.string "uniName"
+    t.integer "university_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["university_id"], name: "index_users_on_university_id"
   end
 
 end

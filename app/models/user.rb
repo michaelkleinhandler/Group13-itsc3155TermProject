@@ -3,14 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable :recoverable,
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable
-  has_one :university, foreign_key: :uni_id
-  # has_many :courses, foreign_key => :uni_id
-  has_many :courseMates
-  has_many :instructors
-  has_many :gProjects
-  has_many :studyGroups
+  has_one :university
+  # has_and_belongs_to_many :courses
+  # belongs_to :university
   before_save :set_init
-  before_create :setPermFields
+  before_create :randomize_id
+
 
   def set_init
     if self.lastName.upcase == 'ADMIN'
@@ -19,17 +17,27 @@ class User < ApplicationRecord
     end
   end
 
-  def setPermFields
-    self.UserID = rand (1000000..9999999)
-  end
-
   def uniName
     @user = self
-    if University.find_by(uni_id: @user.uni_id)
-      University.find_by(uni_id: @user.uni_id).uniName
+    if University.find_by(id: @user.university_id)
+      University.find_by(id: @user.university_id).uniName
     else
       "Invalid University"
     end
+  end
+
+  def getClasses
+    @user.courses.each do |course|
+      course.subject
+    end
+  end
+
+  private
+
+  def randomize_id
+    begin
+      self.id = SecureRandom.random_number(1_000_000)
+    end while User.where(id: self.id).exists?
   end
 
 

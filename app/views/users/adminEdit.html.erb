@@ -21,7 +21,7 @@
 
   <div class="field">
     <%= f.label 'University'%><br/>
-    <%= f.select(:uni_id, University.all.pluck(:uniName, :uni_id)) %>
+    <%= f.select(:university_id, University.all.pluck(:uniName, :id)) %>
   </div>
 
   <div class="actions">

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :courses
   resources :universities
   resources :semesters
+  resources :teacher
 
   get 'welcome/index'
   root 'welcome#index'

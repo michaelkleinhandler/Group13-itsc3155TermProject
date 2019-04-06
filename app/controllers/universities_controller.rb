@@ -1,7 +1,7 @@
 class UniversitiesController < ApplicationController
   def new
     @university = University.new
-    uniList
+    @universities = University.all
   end
 
   def create
@@ -13,9 +13,6 @@ class UniversitiesController < ApplicationController
     end
   end
 
-  def uniList
-    @universities = University.all
-  end
 
   def show
     @universities = University.all
@@ -25,7 +22,7 @@ class UniversitiesController < ApplicationController
   private
 
   def university_params
-    params.require(:university).permit(:uniName)
+    params.require(:university).permit(:uniName, :id)
   end
 
 end

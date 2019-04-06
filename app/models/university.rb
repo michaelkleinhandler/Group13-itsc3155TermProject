@@ -1,13 +1,17 @@
 class University < ApplicationRecord
-  before_save :set_uni_id
-  has_many :user, foreign_key: :uni_id
+  before_create :randomize_id
+  # has_many :users
   has_many :semesters, foreign_key: :uni_id
+  belongs_to :user, optional: true
 
-  def set_uni_id
-    self.uni_id = rand (1000000..9999999)
+
+
+  private
+
+  def randomize_id
+    begin
+      self.id = SecureRandom.random_number(1_000_000)
+    end while University.where(id: self.id).exists?
   end
-
-
-
 
 end
