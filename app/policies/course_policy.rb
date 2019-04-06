@@ -6,6 +6,14 @@ class CoursePolicy
     @course = course
   end
 
+  def enrollme?
+    true
+  end
+  
+  def myclasses?
+    true
+  end
+
   def index?
     registered?
   end
@@ -21,7 +29,8 @@ class CoursePolicy
   def create?
     @user.Instructor?
   end
-
+  
+  
   class Scope
     attr_reader :user, :scope
 

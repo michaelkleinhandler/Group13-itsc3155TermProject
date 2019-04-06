@@ -51,7 +51,9 @@ ActiveRecord::Schema.define(version: 2019_04_04_180557) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "uniName"
+    t.integer "uniID_id"
     t.integer "uni_id"
+    t.index ["uniID_id"], name: "index_universities_on_uniID_id"
     t.index ["uni_id"], name: "index_universities_on_uni_id"
   end
 
@@ -67,6 +69,7 @@ ActiveRecord::Schema.define(version: 2019_04_04_180557) do
     t.string "lastName"
     t.text "bio"
     t.string "image", default: "/images/profileImages/kid yelling.jpg"
+    t.string "university"
     t.string "defRole"
     t.boolean "Instructor"
     t.boolean "Student"

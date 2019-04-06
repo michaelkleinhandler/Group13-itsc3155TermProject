@@ -8,6 +8,16 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
 
+  def enrollme
+    @user = current_user
+    authorize Course
+  end
+
+  def myclasses
+    @user = current_user
+    authorize Course
+  end
+
   def new
     authorize Course
     @course = Course.new
