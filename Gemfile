@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'pundit'
 
+gem 'bootstrap-datepicker-rails'
+
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

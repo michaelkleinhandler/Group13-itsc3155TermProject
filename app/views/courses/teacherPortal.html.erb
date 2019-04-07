@@ -1,0 +1,26 @@
+<h1>Teacher Portal</h1>
+  <a>
+      <form action="courses/new">
+        <input type="submit" value="Create a Course"/>
+      </form>
+    </a>
+  <table>
+      <th>Title</th>
+      <th>Subject</th>
+      <th>Course Number</th>
+      <th>Section</th>
+      <th>Unique Course ID</th>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.title %></td>
+        <td><%= course.subject %></td>
+        <td><%= course.coursenum %></td>
+        <td><%= course.section %></td>
+        <td><%= course.id %></td>
+      </tr>
+
+    <% end %>
+
+  </table>
+
+    

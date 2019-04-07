@@ -1,17 +1,45 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable :recoverable,
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  has_many :courses
-  has_many :courseMates
-  has_many :instructors
-  has_many :gProjects
-  has_many :studyGroups
-  before_save :set_uid
+         :rememberable, :validatable
+  has_one :university
+  # has_and_belongs_to_many :courses
+  # belongs_to :university
+  before_save :set_init
+  before_create :randomize_id
 
-  def set_uid
-    self.UserID = rand (1000000..9999999)
+
+  def set_init
+    if self.lastName.upcase == 'ADMIN'
+      self.SuperAdmin = true
+      self.approved = true;
+    end
   end
+
+  def uniName
+    @user = self
+    if University.find_by(id: @user.university_id)
+      University.find_by(id: @user.university_id).uniName
+    else
+      "Invalid University"
+    end
+  end
+
+  def getClasses
+    @user.courses.each do |course|
+      course.subject
+    end
+  end
+
+  private
+
+  def randomize_id
+    begin
+      self.id = SecureRandom.random_number(1_000_000)
+    end while User.where(id: self.id).exists?
+  end
+
+
 
 end

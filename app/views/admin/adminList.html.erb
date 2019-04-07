@@ -2,31 +2,61 @@
   <th>Email</th>
   <th>First Name</th>
   <th>Last Name</th>
-  <th>University</th>
-  <th>Is Student?</th>
-  <th>Is Instructor?</th>
-  <th>Is Organization Admin?</th>
-  <th>Is Super Admin</th>
-  <th>Is Active</th>
+  <th>Student?</th>
+  <th>Instructor?</th>
+  <th>Organization Admin?</th>
+  <th>Super Admin</th>
+  <th>Approved</th>
   <th>Links</th>
 
   <% @users.each do |user| %>
-    <tr>
-      <td><%= user.email%></td>
-      <td><%= user.firstName %></td>
-      <td><%= user.lastName %></td>
-      <td><%= user.university %></td>
-      <td><%= user.Student? %></td>
-      <td><%= user.Instructor? %></td>
-      <td><%= user.OrgAdmin? %></td>
-      <td><%= user.SuperAdmin? %></td>
-      <td><%= user.approved? %></td>
-      <td>
-        <%=link_to 'Show', show_user_path(user) %><br>
-        <%= link_to 'Edit', edit_user_registration_path(user) %>
+    <% if (current_user.university_id == user.university_id and current_user.OrgAdmin?) or  current_user.SuperAdmin? %>
+      <tr>
+        <td><%= user.email%></td>
+        <td><%= user.firstName %></td>
+        <td><%= user.lastName %></td>
+        <td>
+          <% if user.Student? %>
+            <%= button_to 'True', togStu_path(user), method: :patch %>
+          <% else %>
+            <%= button_to 'False', togStu_path(user), method: :patch %>
+          <%end %>
+        </td>
+        <td>
+          <% if user.Instructor? %>
+            <%= button_to 'True', togIns_path(user), method: :patch %>
+          <% else %>
+            <%= button_to 'False', togIns_path(user), method: :patch %>
+          <%end %>
+        </td>
+        <td>
+          <% if user.OrgAdmin? %>
+            <%= button_to 'True', togOA_path(user), method: :patch %>
+          <% else %>
+            <%= button_to 'False', togOA_path(user), method: :patch %>
+          <%end %>
+        </td>
+        <td>
+          <% if user.SuperAdmin? %>
+            <%= button_to 'True', togSA_path(user), method: :patch %>
+          <% else %>
+            <%= button_to 'False', togSA_path(user), method: :patch %>
+          <%end %>
+        </td>
+        <td>
+          <% if user.approved? %>
+            <%= button_to 'True', togApp_path(user), method: :patch %>
+          <% else %>
+            <%= button_to 'False', togApp_path(user), method: :patch %>
+          <%end %>
+        </td>
+        <td>
+          <%=link_to 'Show', show_user_path(user) %><br>
+          <%= link_to 'Edit', admin_edit_path(user) %>
 
-      </td>
+        </td>
 
-    </tr>
-<% end %>
+      </tr>
+  <% end %>
+    <%end %>
 </table>

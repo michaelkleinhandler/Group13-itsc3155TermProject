@@ -12,13 +12,14 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-datepicker
  */
 
 //Global color variables
 $collBeige: #E1D89F;
 $collGreen: #00703C;
-$collGrey: #364156;
-$collOrange: #FF6700;
+$collGrey: #000036;
+$collOrange: #ff8a3d;
 $collBlue: #B1F8F2;
 $greenSeaweed: rgba(2, 128, 144, 1);
 $blueQueen: rgba(69, 105, 144, 1);
@@ -64,7 +65,7 @@ titleBar3 {
 
 
 vertBar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 3%;
@@ -100,6 +101,7 @@ vertBar {
 
 #buttonWrapper {
   position: absolute;
+  height:5%;
   top: 0%;
   right:10%;
   float: right;
@@ -226,5 +228,6 @@ vertBar {
   top: 10px;
   
 }
+
 
 

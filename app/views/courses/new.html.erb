@@ -1,0 +1,20 @@
+<h1>Create a new course</h1>
+
+<%= form_for @course, :url => { :action => "create" } do |f| %>
+  <div class="field">
+    <%= f.label 'Semester'%><br>
+    <%= f.select(:semester_id, Semester.all.collect {|s| [ s.name, s.semester_id] if s.university_id == @user.university_id }) %><br>
+    <%= f.label :title %>
+    <%= f.text_field :title %><br>
+  <%= f.label :subject %>
+  <%= f.text_field :subject %><br>
+  <%= f.label :coursenum %>
+  <%= f.text_field :coursenum %><br>
+  <%= f.label :section %>
+  <%= f.text_field :section %><br>
+  <%= f.text_field :teacher, :value => current_user.id, :readonly => true %><br>
+  <%= f.text_field :uni_id, :value => current_user.university_id, :readonly => true %><br>
+  <%= f.submit %>
+  </div>
+
+<% end %>

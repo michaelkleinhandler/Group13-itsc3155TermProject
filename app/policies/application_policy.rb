@@ -19,7 +19,7 @@ class ApplicationPolicy
   end
 
   def new?
-    create?
+    false
   end
 
   def update?
@@ -27,7 +27,7 @@ class ApplicationPolicy
   end
 
   def edit?
-    update?
+    false
   end
 
   def destroy?
@@ -36,6 +36,10 @@ class ApplicationPolicy
 
   def registered?
     (user.SuperAdmin? or user.Instructor? or user.Student?) and user.approved?
+  end
+
+  def adminUpdate?
+    user.SuperAdmin?
   end
 
   class Scope

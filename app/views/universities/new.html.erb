@@ -1,0 +1,19 @@
+<%= form_for @university do |f| %>
+  <p>
+    <%= f.label 'University Name' %><br>
+    <%= f.text_field :uniName %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p> <br>
+<% end %>
+
+<table>
+  <th>University Name</th>
+  <% @universities.each do |univ| %>
+    <tr>
+    <td><%= univ.uniName %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,31 @@
+<!--<h2>Edit <%#= resource_name.to_s.humanize %></h2>-->
+
+<%= form_for(@user) do |f| %>
+  <%#= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field" id = "userEditInput">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div><br>
+
+
+  <div class="field" id = "userEditInput">
+    <%= f.label 'First Name' %><br />
+    <%= f.text_field :firstName%>
+  </div><br>
+
+  <div class="field" id = "userEditInput">
+    <%= f.label 'Last Name' %><br />
+    <%= f.text_field :lastName%>
+  </div><br>
+
+  <div class="field">
+    <%= f.label 'University'%><br/>
+    <%= f.select(:university_id, University.all.pluck(:uniName, :id)) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+<%= link_to "Back", :back %>

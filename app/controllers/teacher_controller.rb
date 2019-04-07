@@ -1,6 +1,3 @@
-class TeacherController < ApplicationController
+class TeacherController < UsersController
 
-  def teacherPortal
-
-  end
 end

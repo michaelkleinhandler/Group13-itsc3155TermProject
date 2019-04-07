@@ -1,10 +1,13 @@
 <body>
 <div class="row">
-    <%= image_tag current_user.image, style: 'height:200px;width:auto;' %>
+    <%= image_tag @user.image, style: 'height:200px;width:auto;' %>
   </div>
     <div class="login">
-      <p><%= current_user.firstName %> <%= current_user.lastName %><br></p>
-      <%= current_user.UserID %>
+      <p><%= @user.firstName %> <%= @user.lastName %><br></p>
+      <%= @user.id %><br>
+
+      <%=  @user.uniName  %>
+
       
 <!--      <ul>-->
 <!--         <li><%#= current_user.classes %>  </li>-->
