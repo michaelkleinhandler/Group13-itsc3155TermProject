@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/admin/userlist' => 'admin#adminList'
   get '/admin' => 'admin#adminDash'
   get 'users/:id' => 'users#show', :as => 'show_user'
-  get 'teacherportal' => 'teacher#teacherPortal'
+  get 'teacherportal' => 'courses#teacherPortal'
   get 'enrollme' => 'courses#enrollme'
   get 'myclasses' => 'courses#myclasses'
   get 'admin/edit/:id' => 'users#adminEdit', :as => 'admin_edit'

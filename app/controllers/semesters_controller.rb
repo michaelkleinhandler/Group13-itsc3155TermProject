@@ -26,7 +26,7 @@ class SemestersController < ApplicationController
   private
 
   def semester_params
-    params.require(:semester).permit([:name, :beginDate, :endDate, :uni_id])
+    params.require(:semester).permit([:name, :beginDate, :endDate, :university_id])
   end
 
 end

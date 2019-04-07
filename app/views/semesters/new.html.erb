@@ -10,7 +10,7 @@
 
   <div class="field">
     <%= f.label 'University'%>
-    <%= f.select(:uni_id, University.all.pluck(:uniName, :uni_id)) %>
+    <%= f.select(:university_id, University.all.pluck(:uniName, :id)) %>
   </div>
 
   <%= f.submit "Create Semester" %>

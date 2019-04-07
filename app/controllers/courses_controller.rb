@@ -20,6 +20,8 @@ class CoursesController < ApplicationController
   def new
     authorize Course
     @course = Course.new
+    @user = current_user
+    @semesters = Semester.find_by_university_id(@user.university_id)
   end
 
   def create
@@ -62,11 +64,20 @@ class CoursesController < ApplicationController
  end
 
 
+  def teacherPortal
+    authorize current_user
+    @user = current_user
+    @courses = Course.where(:teacher => @user.id)
+  end
+
+
+
+
 
   private
 
   def course_params
-    params.require(:course).permit([:title, :semester, :year, :subject, :section, :teacher, :coursenum, :course_id, :uni_id, :User_id])
+    params.require(:course).permit([:title, :semester, :year, :subject, :section, :teacher, :coursenum, :uni_id, :User_id])
   end
 
 end

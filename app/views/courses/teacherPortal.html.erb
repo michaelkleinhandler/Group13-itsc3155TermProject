@@ -5,16 +5,18 @@
       </form>
     </a>
   <table>
+      <th>Title</th>
       <th>Subject</th>
       <th>Course Number</th>
       <th>Section</th>
-      <th>Semester</th>
+      <th>Unique Course ID</th>
     <% @courses.each do |course| %>
       <tr>
+        <td><%= course.title %></td>
         <td><%= course.subject %></td>
         <td><%= course.coursenum %></td>
         <td><%= course.section %></td>
-        <td><%= course.Semester.name %></td>
+        <td><%= course.id %></td>
       </tr>
 
     <% end %>

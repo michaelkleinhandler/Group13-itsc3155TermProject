@@ -1,7 +1,7 @@
 class Semester < ApplicationRecord
   # has_one :university, foreign_key: :uni_id
   # belongs_to :university, foreign_key: :uni_id, optional: true
-  has_many :courses, foreign_key: :course_id
+  belongs_to :course, optional: true
   before_create :set_semID
 
 
