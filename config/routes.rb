@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :universities
   resources :semesters
   resources :teacher
+  resources :enrollment
 
   get 'welcome/index'
   root 'welcome#index'
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
   get '/admin' => 'admin#adminDash'
   get 'users/:id' => 'users#show', :as => 'show_user'
   get 'teacherportal' => 'courses#teacherPortal'
-  get 'enrollme' => 'courses#enrollme'
+  get 'enrollme' => 'enrollment#new'
   get 'myclasses' => 'courses#myclasses'
   get 'admin/edit/:id' => 'users#adminEdit', :as => 'admin_edit'
   patch 'admin/:id/togApp' => 'users#toggleApproved', :as => 'togApp'

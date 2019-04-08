@@ -8,10 +8,7 @@ class CoursesController < ApplicationController
   end
 
 
-  def enrollme
-    @user = current_user
-    authorize Course
-  end
+
 
   def myclasses
     authorize Course
@@ -54,18 +51,17 @@ class CoursesController < ApplicationController
     authorize @course
 
     if @course.update(course_params)
-      redirect_to @course
-
+      redirect_to('/teacherportal')
     else
       render 'edit'
     end
   end
 
  def destroy
-   authorize Course
    @course = Course.find(params[:id])
+   authorize @course
    @course.destroy
-   redirect_to root_path
+   redirect_to '/teacherportal'
  end
 
 

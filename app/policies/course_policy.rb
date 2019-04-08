@@ -41,6 +41,12 @@ class CoursePolicy
       true
     end
   end
+
+  def destroy?
+    if (@user.id == @course.teacher) or ((@user.university_id == @course.uni_id) and @user.OrgAdmin?) or @user.SuperAdmin?
+      true
+      end
+    end
   
   class Scope
     attr_reader :user, :scope

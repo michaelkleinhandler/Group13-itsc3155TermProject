@@ -18,7 +18,8 @@
       <td><%= course.coursenum %></td>
       <td><%= course.section %></td>
       <td><%= course.id %></td>
-      <td><%= link_to 'Edit', edit_course_path(course) %></td>
+      <td><%= link_to 'Edit', edit_course_path(course) %><br>
+          <%= link_to 'Delete Course', course_path(course), method: :delete, data:{confirm: 'Are you sure you want to delete this course?'}%></td>
     </tr>
 
   <% end %>
