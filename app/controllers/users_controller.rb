@@ -120,6 +120,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def passwordReset
+    @user = User.find(params[:id])
+    authorize @user
+  end
+
   private
 
   def user_params

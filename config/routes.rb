@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'enrollme' => 'enrollment#new'
   get 'myclasses' => 'courses#myclasses'
   get 'admin/edit/:id' => 'users#adminEdit', :as => 'admin_edit'
+  get 'admin/resetpassword/:id' => 'users#passwordReset', :as => 'admin_password_reset'
   patch 'admin/:id/togApp' => 'users#toggleApproved', :as => 'togApp'
   patch 'admin/:id/togSA' => 'users#toggleSuperAdmin', :as => 'togSA'
   patch 'admin/:id/togIns' => 'users#toggleInstructor', :as => 'togIns'

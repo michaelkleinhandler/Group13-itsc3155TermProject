@@ -64,6 +64,11 @@ class UserPolicy < ApplicationPolicy
   end
 
 
+  def passwordReset?
+    @user.SuperAdmin? or (@user.OrgAdmin? and (@record.university_id == @user.university_id))
+  end
+
+
   def isAdmin?
     (@user.SuperAdmin? and @user.approved?) or (@user.OrgAdmin? and @user.approved)
   end
@@ -75,6 +80,7 @@ class UserPolicy < ApplicationPolicy
   def teacherPortal?
     true
   end
+
 
   class Scope
     attr_reader :user, :scope
