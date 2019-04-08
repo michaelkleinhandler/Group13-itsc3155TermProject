@@ -40,13 +40,13 @@ class UserPolicy < ApplicationPolicy
   end
 
   def toggleApproved?
-    if ((@user.SuperAdmin?) or (@user.OrgAdmin? and @user.uni_id == @record.uni_id)) and @user.UserID != @record.UserID
+    if ((@user.SuperAdmin?) or (@user.OrgAdmin? and @user.university_id == @record.uni_id)) and @user.id != @record.id
       true
     end
   end
 
   def toggleSuperAdmin?
-    if (@user.UserID != @record.UserID) and @user.SuperAdmin
+    if (@user.id != @record.id) and @user.SuperAdmin
       true
     end
   end

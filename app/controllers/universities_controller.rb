@@ -7,7 +7,7 @@ class UniversitiesController < ApplicationController
   def create
     @university = University.new(university_params)
     if @university.save
-      redirect_to '/admin'
+      redirect_back(fallback_location: root_path)
     else
       render 'new'
     end

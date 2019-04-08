@@ -9,7 +9,9 @@
   <% @courses.each do |c| %>
   <tr>
     <td><%= c.title %></td>
-    <td><%= c.teacher %></td>
+    <td><%= c.getTeacher %></td>
+    <td><%= c.semester.beginDate %></td>
+    <td><%= c.semester.endDate %></td>
   </tr>
   <% end %>
 </table>

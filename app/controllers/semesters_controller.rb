@@ -9,7 +9,7 @@ class SemestersController < ApplicationController
   def create
     @semester = Semester.new(semester_params)
     if @semester.save
-      redirect_to '/admin'
+      redirect_back(fallback_location: root_path)
     else
       render 'new'
     end

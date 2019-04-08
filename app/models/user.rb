@@ -8,11 +8,13 @@ class User < ApplicationRecord
   has_many :courses, :through => :enrollments
   # has_and_belongs_to_many :courses
   # belongs_to :university
-  before_save :set_init
+  before_save :setCalcFields
   before_create :randomize_id
 
 
-  def set_init
+  def setCalcFields
+    self.fullName = "#{self.firstName} #{self.lastName}"
+
     if self.lastName.upcase == 'ADMIN'
       self.SuperAdmin = true
       self.approved = true;
@@ -29,7 +31,7 @@ class User < ApplicationRecord
   end
 
   def getClasses
-    Course.joins(:users).where('enrollments.user_id = ?', "987620").references(:enrollments)
+    Course.joins(:users).where('enrollments.user_id = ?', self.id).references(:enrollments)
   end
 
   private

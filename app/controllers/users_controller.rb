@@ -51,8 +51,8 @@ class UsersController < ApplicationController
   end
 
   def toggleApproved
-    authorize current_user
     @user = User.find(params[:id])
+    authorize @user
     # if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university == @user.university)
       if @user.approved
         @user.approved = false

@@ -1,5 +1,4 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_user!
   after_action :verify_authorized
 
 
@@ -7,7 +6,6 @@ class CoursesController < ApplicationController
     authorize Course
     @course = Course.find(params[:id])
   end
-
 
 
   def enrollme
@@ -47,13 +45,13 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    authorize Course
     @course = Course.find(params[:id])
+    authorize @course
   end
 
   def update
-    authorize Course
     @course = Course.find(params[:id])
+    authorize @course
 
     if @course.update(course_params)
       redirect_to @course

@@ -1,7 +1,7 @@
 class Semester < ApplicationRecord
   # has_one :university, foreign_key: :uni_id
   # belongs_to :university, foreign_key: :uni_id, optional: true
-  belongs_to :course
+  has_many :courses
 
   before_create :randomize_id
 
@@ -11,7 +11,7 @@ class Semester < ApplicationRecord
   def randomize_id
     begin
       self.id = SecureRandom.random_number(1_000_000)
-    end while Course.where(id: self.id).exists?
+    end while Semester.where(id: self.id).exists?
   end
 
 
