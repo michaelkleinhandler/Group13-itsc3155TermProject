@@ -2,10 +2,13 @@ class CoursesController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized
 
+
   def show
     authorize Course
     @course = Course.find(params[:id])
   end
+
+
 
   def enrollme
     @user = current_user
@@ -26,7 +29,10 @@ class CoursesController < ApplicationController
 
   def create
     authorize Course
+    @user = current_user
     @course = Course.new(course_params)
+    @course.teacher = current_user.id
+    @course.uni_id = current_user.university_id
     if @course.save
       redirect_to '/teacherportal'
     else
@@ -77,7 +83,7 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit([:title, :semester, :year, :subject, :section, :teacher, :coursenum, :uni_id, :User_id])
+    params.require(:course).permit([:title, :semester_id, :year, :subject, :section, :teacher, :coursenum, :uni_id, :User_id, :course_id])
   end
 
 end
