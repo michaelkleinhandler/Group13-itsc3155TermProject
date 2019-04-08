@@ -11,7 +11,7 @@ class CoursePolicy
   end
   
   def myclasses?
-    true
+    user
   end
 
   def index?

@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable
   has_one :university
-  has_and_belongs_to_many :courses
+  has_many :enrollments
+  has_many :courses, :through => :enrollments
   # has_and_belongs_to_many :courses
   # belongs_to :university
   before_save :set_init
@@ -28,9 +29,7 @@ class User < ApplicationRecord
   end
 
   def getClasses
-    @user.courses.each do |course|
-      course.subject
-    end
+    Course.joins(:users).where('enrollments.user_id = ?', "987620").references(:enrollments)
   end
 
   private

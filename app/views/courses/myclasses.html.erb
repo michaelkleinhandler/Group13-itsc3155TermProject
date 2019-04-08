@@ -1,1 +1,15 @@
 <h1>List of my classes</h1>
+
+<table>
+  <th>Title</th>
+  <th>Teacher</th>
+  <th>Start Date</th>
+  <th>End Date</th>
+
+  <% @courses.each do |c| %>
+  <tr>
+    <td><%= c.title %></td>
+    <td><%= c.teacher %></td>
+  </tr>
+  <% end %>
+</table>

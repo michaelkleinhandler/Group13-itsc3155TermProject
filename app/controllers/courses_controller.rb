@@ -16,8 +16,9 @@ class CoursesController < ApplicationController
   end
 
   def myclasses
-    @user = current_user
     authorize Course
+    @user = current_user
+    @courses = @user.getClasses
   end
 
   def new

@@ -12,17 +12,19 @@ class Course < ApplicationRecord
   # before_save :normalizeSemester
   # has_one :semester, foreign_key: :randID
   # belongs_to :university, foreign_key: :uni_id, optional: true
-  # has_and_belongs_to_many :users
+  has_many :enrollments
+  has_many :users, :through => :enrollments
   has_one :semester
   belongs_to :semester
-  has_one :user
-  belongs_to :user, optional: true
+  # has_one :user
+  # belongs_to :user, optional: true
 
 
   def setTitle
     @semName = self.semester.name
     self.title = "#{@semName} #{self.subject} #{self.coursenum} #{self.section}"
   end
+
 
 
 
