@@ -20,10 +20,13 @@ ActiveRecord::Schema.define(version: 2019_04_08_041240) do
     t.string "subject"
     t.string "coursenum"
     t.string "section"
+    t.integer "randID"
     t.integer "User_id"
     t.integer "uni_id"
     t.integer "semester_id"
+    t.index ["User_id"], name: "index_courses_on_User_id"
     t.index ["semester_id"], name: "index_courses_on_semester_id"
+    t.index ["uni_id"], name: "index_courses_on_uni_id"
   end
 
   create_table "enrollments", id: false, force: :cascade do |t|
@@ -49,6 +52,7 @@ ActiveRecord::Schema.define(version: 2019_04_08_041240) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "courses_id"
+    t.index ["courses_id"], name: "index_students_on_courses_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -60,6 +64,8 @@ ActiveRecord::Schema.define(version: 2019_04_08_041240) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "uniName"
+    t.integer "uniID_id"
+    t.index ["uniID_id"], name: "index_universities_on_uniID_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,6 +80,7 @@ ActiveRecord::Schema.define(version: 2019_04_08_041240) do
     t.string "lastName"
     t.text "bio"
     t.string "image", default: "/images/profileImages/kid yelling.jpg"
+    t.string "university"
     t.string "defRole"
     t.boolean "Instructor"
     t.boolean "Student"
