@@ -12,6 +12,7 @@ class Course < ApplicationRecord
   has_many :enrollments
   has_many :users,through: :enrollments, dependent: :destroy
   belongs_to :semester
+  has_many :projects
   # belongs_to :semester
   # has_one :user
   # belongs_to :user, optional: true

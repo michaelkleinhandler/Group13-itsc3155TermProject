@@ -1,17 +1,23 @@
 <h1>List of my classes</h1>
 
-<table>
-  <th>Title</th>
-  <th>Teacher</th>
-  <th>Start Date</th>
-  <th>End Date</th>
+<table class="table">
+  <thead>
+    <th>Title</th>
+    <th>Teacher</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th> show </th>
+  </thead>
 
+  <tbody>
   <% @courses.each do |c| %>
   <tr>
     <td><%= c.title %></td>
     <td><%= c.getTeacher %></td>
     <td><%= c.semester.beginDate %></td>
     <td><%= c.semester.endDate %></td>
+    <td><%= link_to "Show Course", course_path(c) %></td>
   </tr>
   <% end %>
+  </tbody>
 </table>

@@ -1,0 +1,19 @@
+<%= form_for @semester do |f| %>
+  <%= f.label "Semester Name" %><br>
+  <%= f.text_field :name %><br>
+
+  <%= f.label "Begin Date" %>
+  <%= datepicker_input(f, :beginDate) %>
+
+  <%= f.label "End Date" %>
+  <%= datepicker_input(f, :endDate) %>
+
+  <div class="field">
+    <%= f.label 'University'%>
+    <%= f.select(:university_id, University.all.pluck(:uniName, :id)) %>
+  </div>
+
+  <%= f.submit "Update Semester" %>
+
+
+<% end %>

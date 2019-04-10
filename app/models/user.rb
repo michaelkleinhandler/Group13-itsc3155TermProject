@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_one :university
   has_many :enrollments
   has_many :courses, :through => :enrollments
-  # has_and_belongs_to_many :courses
+  has_and_belongs_to_many :projects
   # belongs_to :university
   before_save :setCalcFields
   before_create :randomize_id
