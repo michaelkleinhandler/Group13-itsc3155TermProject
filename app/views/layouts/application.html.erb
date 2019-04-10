@@ -16,7 +16,7 @@
     <% if not user_signed_in? %>
       You are not signed in
     <% else %>
-    <div id="userAck">
+    <div id="userAck" class = "text-right">
       Hello, <%= current_user.firstName %>!
       <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
       <%= link_to('Edit Profile', edit_user_registration_path) %>
@@ -27,9 +27,9 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <% if user_signed_in? and current_user.uniName %>
-    <a href="/"><h1 id="title">CollaboRATE@<%= current_user.uniName %></h1></a>
+    <a href="/"><h1 id="title" class = "text-uppercase">CollaboRATE@<%= current_user.uniName %></h1></a>
   <% else %>
-    <a href="/"><h1 id="title">CollaboRATE</h1></a>
+    <a href="/"><h1 id="title" class = "text-uppercase">CollaboRATE</h1></a>
   <% end %>
   <div id="colorCol">
     <vertBar></vertBar>
