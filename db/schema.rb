@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_10_000311) do
+ActiveRecord::Schema.define(version: 2019_04_10_163700) do
 
   create_table "courses", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -36,6 +36,31 @@ ActiveRecord::Schema.define(version: 2019_04_10_000311) do
     t.index ["banned"], name: "index_enrollments_on_banned"
     t.index ["course_id"], name: "index_enrollments_on_course_id"
     t.index ["user_id"], name: "index_enrollments_on_user_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.integer "course_id"
+    t.integer "user_id"
+    t.integer "semester_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_projects_on_course_id"
+    t.index ["semester_id"], name: "index_projects_on_semester_id"
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "course_id"
+    t.integer "user_id"
+    t.integer "rating"
+    t.integer "created_by"
+    t.integer "project_id"
+    t.index ["course_id"], name: "index_ratings_on_course_id"
+    t.index ["project_id"], name: "index_ratings_on_project_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "semesters", force: :cascade do |t|

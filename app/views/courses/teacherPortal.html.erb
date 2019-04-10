@@ -5,8 +5,14 @@
 <!--<body>-->
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#All Courses">Courses</a>
+    <a class="nav-link active" data-toggle="tab" href="#All Courses">All Courses</a>
   </li>
+  <li class="nav-item" %>
+    <a class="nav-link" data-toggle="tab" href="#pastCourses">Past Courses</a>
+  </li>
+  <li class="nav-item" %>
+    <a class="nav-link" data-toggle="tab" href="#futureCourses">Future Courses</a></li>
+
   <% @courses.each do |c| %>
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href=<%="##{c.id}" %>><%= c.title %></a>
@@ -17,7 +23,7 @@
   <div class="container-fluid drivers-main tab-pane active" id="All Courses" role="tabpanel">
     <table class="table">
       <thead>
-        <th>Title</th>
+        <th>Semester</th>
         <th>Subject</th>
         <th>Course</th>
         <th>Section</th>
@@ -27,7 +33,7 @@
       <tbody>
         <% @courses.each do |course| %>
           <tr>
-            <td><%= course.title %></td>
+            <td><%= course.semester.name %></td>
             <td><%= course.subject %></td>
             <td><%= course.coursenum %></td>
             <td><%= course.section %></td>
@@ -71,6 +77,60 @@
           </table>
         </div>
     <% end %>
+  <div class="container-fluid drivers-main tab-pane" id="pastCourses" role="tabpanel">
+    <table class="table">
+        <thead>
+          <th>Semester</th>
+          <th>Subject</th>
+          <th>Course</th>
+          <th>Section</th>
+          <th>Class ID</th>
+          <th>Options</th>
+        </thead>
+        <tbody>
+        <% @past_courses.each do |course| %>
+          <tr>
+            <td><%= course.semester.name %></td>
+            <td><%= course.subject %></td>
+            <td><%= course.coursenum %></td>
+            <td><%= course.section %></td>
+            <td><%= course.id %></td>
+            <td><%= link_to 'Edit', edit_course_path(course) %><br>
+              <%= link_to 'Delete Course', course_path(course), method: :delete, data:{confirm: 'Are you sure you want to delete this course?'}%>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+  </div>
+    <div class="container-fluid drivers-main tab-pane" id="futureCourses" role="tabpanel">
+      <table class="table">
+        <thead>
+        <th>Semester</th>
+        <th>Subject</th>
+        <th>Course</th>
+        <th>Section</th>
+        <th>Class ID</th>
+        <th>Options</th>
+        </thead>
+        <tbody>
+        <% @future_courses.each do |course| %>
+          <tr>
+            <td><%= course.semester.name %></td>
+            <td><%= course.subject %></td>
+            <td><%= course.coursenum %></td>
+            <td><%= course.section %></td>
+            <td><%= course.id %></td>
+            <td><%= link_to 'Edit', edit_course_path(course) %><br>
+              <%= link_to 'Delete Course', course_path(course), method: :delete, data:{confirm: 'Are you sure you want to delete this course?'}%>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+
 </div>
   <%# @courses.each do |course| %>
 <!--    <tr>-->

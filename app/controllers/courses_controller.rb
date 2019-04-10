@@ -3,8 +3,8 @@ class CoursesController < ApplicationController
 
 
   def show
-    authorize Course
     @course = Course.find(params[:id])
+    authorize @course
   end
 
 
@@ -68,7 +68,12 @@ class CoursesController < ApplicationController
   def teacherPortal
     authorize current_user
     @user = current_user
-    @courses = Course.where(:teacher => @user.id)
+    # @courses = Course.where(:teacher => @user.id)
+    @courses = Course.joins(:semester).where('(? between semesters.beginDate and semesters.endDate) and courses.teacher = ?', Date.today, @user.id)
+    @future_courses = Course.joins(:semester).where('(? < semesters.beginDate) and courses.teacher = ?', Date.today, @user.id)
+    @past_courses = Course.joins(:semester).where('(? > semesters.endDate) and courses.teacher = ?', Date.today, @user.id)
+
+
   end
 
   # def toggleBan

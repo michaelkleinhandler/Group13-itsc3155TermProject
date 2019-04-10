@@ -1,1 +1,27 @@
-<%= @course.id %>
+<%= @course.id %><br>
+<%= @course.getStudents.each.count %>
+<table class='table'>
+  <thead>
+    <th>Full Name</th>
+    <th>Email Address</th>
+<!--    <th>CollaboRATING</th>-->
+    <th>Options</th>
+  </thead>
+  <tbody>
+    <% @course.getStudents.each do |s| %>
+      <tr>
+       <td><%= s.fullName %></td>
+        <td><%= s.email %></td>
+        <td><%# s. %></td>
+        <td><%# %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_for([@course, @course.projects.build]) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.submit%>
+
+<% end %>

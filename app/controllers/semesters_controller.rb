@@ -1,6 +1,7 @@
 class SemestersController < ApplicationController
 
   def new
+    @user = current_user
     @semester = Semester.new
     semList
   end
@@ -17,7 +18,20 @@ class SemestersController < ApplicationController
 
   def semList
     @semesters = Semester.all
+  end
 
+  def edit
+    @semester = Semester.find(params[:id])
+  end
+
+  def update
+    @semester = Semester.find(params[:id])
+    # authorize @semester
+    if @semester.update(semester_params)
+      redirect_back(fallback_location: root_path)
+    else
+      render 'edit'
+    end
   end
 
 

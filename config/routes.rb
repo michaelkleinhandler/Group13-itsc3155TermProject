@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   }
 
   resources :users
-  resources :courses
+  resources :courses do
+    resources :projects
+  end
   resources :universities
   resources :semesters
   resources :teacher
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
   patch 'admin/:id/togOrgAd' => 'users#toggleOrgAdmin', :as => 'togOA'
   patch 'admin/:id/togStudent' => 'users#toggleStudent', :as => 'togStu'
   post 'banStudent/:cid/:sid' => 'enrollment#toggleBan', :as => 'banStudent'
-  get 'unenroll/:cid/:sid' => 'enrollment#unEnroll', :as => 'removeEnrollment'
+  post 'unenroll/:cid/:sid' => 'enrollment#unEnroll', :as => 'removeEnrollment'
 
 
 

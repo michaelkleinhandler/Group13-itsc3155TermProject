@@ -6,11 +6,11 @@
   }
 
   .nav-link {
-    border: $nav-tabs-border-width solid transparent;
+    border-color: lightgray;
     @include border-top-radius($nav-tabs-border-radius);
 
     @include hover-focus {
-      border-color: $nav-tabs-link-hover-border-color;
+      border-color: black;
     }
 
     &.disabled {
@@ -23,8 +23,9 @@
   .nav-link.active,
   .nav-item.show .nav-link {
     color: $nav-tabs-link-active-color;
-    border-color: darkgray;
+    border-color: black;
   }
+
 
   .dropdown-menu {
     // Make dropdown border overlap tab border
