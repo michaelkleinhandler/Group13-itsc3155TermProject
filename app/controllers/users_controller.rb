@@ -125,6 +125,12 @@ class UsersController < ApplicationController
     authorize @user
   end
 
+  def enrollmentNum
+    @user = User.find(params[:id])
+    @course = Course.find(params[:cid])
+    @user.enrollmentNum
+  end
+
   private
 
   def user_params

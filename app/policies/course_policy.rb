@@ -9,6 +9,12 @@ class CoursePolicy
   def enrollme?
     true
   end
+
+  def unEnroll?
+    if (@user.id == @course.teacher) or ((@user.university_id == @course.uni_id) and @user.OrgAdmin?) or @user.SuperAdmin?
+      true
+    end
+  end
   
   def myclasses?
     user

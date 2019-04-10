@@ -22,11 +22,19 @@ class Course < ApplicationRecord
   end
 
   def getTeacher
-    User.find_by_id(self.teacher).fullName
+    if User.find_by_id(self.teacher).presence
+      User.find_by_id(self.teacher).fullName
+    else
+      "Invalid teacher"
+    end
   end
 
   def getStudents
     User.joins(:courses).where('enrollments.course_id = ?', self.id).references(:enrollments)
+  end
+
+  def retrieveBanned(student)
+    self.enrollments.where('enrollments.course_id = ? and enrollments.user_id = ? ', self.id, student.id).first.banned?
   end
 
 
