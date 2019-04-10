@@ -25,6 +25,11 @@ class Course < ApplicationRecord
     User.find_by_id(self.teacher).fullName
   end
 
+  def getStudents
+    User.joins(:courses).where('enrollments.course_id = ?', self.id).references(:enrollments)
+  end
+
+
 
 
 

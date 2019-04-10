@@ -45,8 +45,14 @@ class CoursePolicy
   def destroy?
     if (@user.id == @course.teacher) or ((@user.university_id == @course.uni_id) and @user.OrgAdmin?) or @user.SuperAdmin?
       true
-      end
     end
+  end
+
+  def toggleBan?
+    if @user.id == @course.teacher
+      true
+    end
+  end
   
   class Scope
     attr_reader :user, :scope

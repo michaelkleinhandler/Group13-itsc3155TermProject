@@ -1,63 +1,68 @@
-<table>
-  <th>Email</th>
-  <th>First Name</th>
-  <th>Last Name</th>
-  <th>Student?</th>
-  <th>Instructor?</th>
-  <th>Organization Admin?</th>
-  <th>Super Admin</th>
-  <th>Approved</th>
-  <th>Links</th>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <th>Email</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Student?</th>
+      <th>Instructor?</th>
+      <th>Organization Admin?</th>
+      <th>Super Admin</th>
+      <th>Approved</th>
+      <th>Links</th>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <% if (current_user.university_id == user.university_id and current_user.OrgAdmin?) or  current_user.SuperAdmin? %>
+          <tr>
+            <td><%= user.email%></td>
+            <td><%= user.firstName %></td>
+            <td><%= user.lastName %></td>
+            <td>
+              <% if user.Student? %>
+                <%= button_to 'True', togStu_path(user), method: :patch %>
+              <% else %>
+                <%= button_to 'False', togStu_path(user), method: :patch %>
+              <%end %>
+            </td>
+            <td>
+              <% if user.Instructor? %>
+                <%= button_to 'True', togIns_path(user), method: :patch %>
+              <% else %>
+                <%= button_to 'False', togIns_path(user), method: :patch %>
+              <%end %>
+            </td>
+            <td>
+              <% if user.OrgAdmin? %>
+                <%= button_to 'True', togOA_path(user), method: :patch %>
+              <% else %>
+                <%= button_to 'False', togOA_path(user), method: :patch %>
+              <%end %>
+            </td>
+            <td>
+              <% if user.SuperAdmin? %>
+                <%= button_to 'True', togSA_path(user), method: :patch %>
+              <% else %>
+                <%= button_to 'False', togSA_path(user), method: :patch %>
+              <%end %>
+            </td>
+            <td>
+              <% if user.approved? %>
+                <%= button_to 'True', togApp_path(user), method: :patch %>
+              <% else %>
+                <%= button_to 'False', togApp_path(user), method: :patch %>
+              <%end %>
+            </td>
+            <td>
+              <%=link_to 'Show', show_user_path(user) %><br>
+              <%= link_to 'Edit', admin_edit_path(user) %><br>
+              <%= link_to "Reset Password", admin_password_reset_path(user)%>
 
-  <% @users.each do |user| %>
-    <% if (current_user.university_id == user.university_id and current_user.OrgAdmin?) or  current_user.SuperAdmin? %>
-      <tr>
-        <td><%= user.email%></td>
-        <td><%= user.firstName %></td>
-        <td><%= user.lastName %></td>
-        <td>
-          <% if user.Student? %>
-            <%= button_to 'True', togStu_path(user), method: :patch %>
-          <% else %>
-            <%= button_to 'False', togStu_path(user), method: :patch %>
-          <%end %>
-        </td>
-        <td>
-          <% if user.Instructor? %>
-            <%= button_to 'True', togIns_path(user), method: :patch %>
-          <% else %>
-            <%= button_to 'False', togIns_path(user), method: :patch %>
-          <%end %>
-        </td>
-        <td>
-          <% if user.OrgAdmin? %>
-            <%= button_to 'True', togOA_path(user), method: :patch %>
-          <% else %>
-            <%= button_to 'False', togOA_path(user), method: :patch %>
-          <%end %>
-        </td>
-        <td>
-          <% if user.SuperAdmin? %>
-            <%= button_to 'True', togSA_path(user), method: :patch %>
-          <% else %>
-            <%= button_to 'False', togSA_path(user), method: :patch %>
-          <%end %>
-        </td>
-        <td>
-          <% if user.approved? %>
-            <%= button_to 'True', togApp_path(user), method: :patch %>
-          <% else %>
-            <%= button_to 'False', togApp_path(user), method: :patch %>
-          <%end %>
-        </td>
-        <td>
-          <%=link_to 'Show', show_user_path(user) %><br>
-          <%= link_to 'Edit', admin_edit_path(user) %><br>
-          <%= link_to "Reset Password", admin_password_reset_path(user)%>
+            </td>
 
-        </td>
-
-      </tr>
-  <% end %>
-    <%end %>
-</table>
+          </tr>
+      <% end %>
+        <%end %>
+    </tbody>
+  </table>
+</div>

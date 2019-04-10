@@ -71,6 +71,14 @@ class CoursesController < ApplicationController
     @courses = Course.where(:teacher => @user.id)
   end
 
+  def toggleBan
+    @course = Course.find(params[:Cid])
+    authorize @course
+    @user = User.find(params[:Sid])
+    Enrollment.banStudent(@course, @user)
+    redirect_back(fallback_location: root_path)
+  end
+
 
 
 

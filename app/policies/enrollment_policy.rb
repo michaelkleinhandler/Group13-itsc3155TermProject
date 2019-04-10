@@ -1,5 +1,10 @@
 class EnrollmentPolicy < ApplicationPolicy
 
+  def initialize(user,course)
+    @user = user
+    @course = course
+  end
+
   def new?
     true
   end

@@ -10,10 +10,21 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
- *= require bootstrap-datepicker
- */
+*/
+
+//@import "bootstrap-sprockets";
+@import "welcome";
+@import "admin";
+@import 'bootstrap';
+@import "bootstrap/_functions";
+@import "bootstrap/*";
+@import "bootstrap/custom/*";
+//@import '/app/assets/stylesheets/bootstrap/*';
+//@import 'bootstrap-datepicker';
+
+
+
+//@import
 
 //Global color variables
 $collBeige: #E1D89F;
@@ -32,6 +43,7 @@ $redFire: rgba(244, 91, 105, 1);
   font-weight:bold;
   font-size:24px;
 }
+
 
 titleBar1 {
   position: absolute;
@@ -143,7 +155,7 @@ vertBar {
   margin-left:5%;
 }
 
-#todd li 
+#todd li
 {
   list-style-type: none;
 }
@@ -226,7 +238,13 @@ vertBar {
 {
   position: relative;
   top: 10px;
-  
+
+}
+
+.table td.fit,
+.table th.fit {
+  white-space: nowrap;
+  width: 1%;
 }
 
 

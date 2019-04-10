@@ -1,5 +1,12 @@
 <!DOCTYPE html>
+<!--<script src="jquery.min.js" type="text/javascript"></script>-->
+
 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<%#= javascript_include_tag "bootstrap" %>
+<%#= stylesheet_link_tag 'nav', media: 'all', 'data-turbolinks-track': 'reload' %>
+<!--<link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+<!--<script src="bootstrap.min.js" type="text/javascript"></script>-->
 
 <html>
 
@@ -32,8 +39,7 @@
     <titleBar2></titleBar2>
     <titleBar3></titleBar3>
   </div>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%#= stylesheet_link_tag '/app/assets/stylesheets/application.scss', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <div class="alertBar">
@@ -47,5 +53,8 @@
   <body>
   <%= yield %>
   </body>
+
 </div>
+
+
 </html>

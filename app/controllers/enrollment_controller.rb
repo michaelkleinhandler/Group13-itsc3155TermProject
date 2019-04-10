@@ -24,17 +24,20 @@ class EnrollmentController < ApplicationController
   end
 
   def destroy
-    @enrollment = Enrollment.find_by_course_id(@course.course_id)
-    authorize @enrollment
-    @enrollment.destroy
+    @course = Course.find(params[:Cid])
+    authorize @course
+    @enrollment = Enrollment.where(:course_id => :Cid, :user_id => :Uid)
+    Enrollment.destroy(Enrollment.where(:course_id => :Cid, :user_id => :Uid))
+
     redirect_to root_path
   end
+
 
 
   private
 
   def enrollment_params
-    params.require(:enrollment).permit([:course_id])
+    params.require(:enrollment).permit([:course_id, :banned])
   end
 
 end

@@ -31,6 +31,12 @@ gem 'devise'
 gem 'pundit'
 
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap', '~> 4.0.0'
+gem 'jquery-rails'
+gem 'popper_js'
+gem 'sprockets-rails'
+
+
 
 
 # Use ActiveStorage variant

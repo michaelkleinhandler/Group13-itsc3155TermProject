@@ -27,7 +27,8 @@ Rails.application.routes.draw do
   patch 'admin/:id/togIns' => 'users#toggleInstructor', :as => 'togIns'
   patch 'admin/:id/togOrgAd' => 'users#toggleOrgAdmin', :as => 'togOA'
   patch 'admin/:id/togStudent' => 'users#toggleStudent', :as => 'togStu'
-
+  get 'banStudent/:Cid/:Sid' => 'enrollment#toggleBan', :as => 'banStudent'
+  get 'unenroll/:Cid/:Sid' => 'enrollment#destroy', :as => 'removeEnrollment'
 
 
 

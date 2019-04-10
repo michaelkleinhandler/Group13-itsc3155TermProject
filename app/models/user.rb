@@ -31,7 +31,7 @@ class User < ApplicationRecord
   end
 
   def getClasses
-    Course.joins(:users).where('enrollments.user_id = ?', self.id).references(:enrollments)
+    Course.joins(:users).where('enrollments.user_id = ? and enrollments.banned = ?', self.id, false).references(:enrollments)
   end
 
   private
