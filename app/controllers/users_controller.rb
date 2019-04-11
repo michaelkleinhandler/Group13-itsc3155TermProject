@@ -67,7 +67,7 @@ class UsersController < ApplicationController
   def toggleSuperAdmin
     authorize User.find(params[:id])
     @user = User.find(params[:id])
-    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university == @user.university)
+    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university_id == @user.university_id)
       if @user.SuperAdmin and (current_user.id != @user.id)
         @user.SuperAdmin = false
       elsif not @user.SuperAdmin
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
   def toggleInstructor
     authorize User.find(params[:id])
     @user = User.find(params[:id])
-    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university == @user.university)
+    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university_id == @user.university_id)
       if @user.Instructor?
         @user.Instructor = false
       elsif not @user.Instructor?
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
   def toggleStudent
     authorize User.find(params[:id])
     @user = User.find(params[:id])
-    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university == @user.university)
+    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university_id == @user.university_id)
       if @user.Student?
         @user.Student = false
       elsif not @user.Student?
@@ -109,7 +109,7 @@ class UsersController < ApplicationController
   def toggleOrgAdmin
     authorize User.find(params[:id])
     @user = User.find(params[:id])
-    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university == @user.university)
+    if current_user.SuperAdmin? or (current_user.OrgAdmin? and current_user.university_id == @user.university_id)
       if @user.OrgAdmin?
         @user.OrgAdmin = false
       elsif not @user.OrgAdmin?

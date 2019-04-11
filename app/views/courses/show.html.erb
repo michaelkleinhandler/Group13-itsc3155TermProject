@@ -1,5 +1,3 @@
-<%= @course.id %><br>
-<%= @course.getStudents.each.count %>
 <table class='table'>
   <thead>
     <th>Full Name</th>
@@ -13,15 +11,31 @@
        <td><%= s.fullName %></td>
         <td><%= s.email %></td>
         <td><%# s. %></td>
-        <td><%# %></td>
+<!--        <td><%## %></td>-->
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= form_for([@course, @course.projects.build]) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
-  <%= f.submit%>
-
+    <table class="table">
+      <thead>
+        <th>Project Name</th>
+        <th>Groups</th>
+      </thead>
+      <tbody>
+        <% @course.projects.each do |p| %>
+          <tr>
+            <td><a href=<%=course_project_path(@course, p)%>><%= p.name %></a></td>
+            <td><%= link_to "Delete Project", course_project_path(@course, p), method: :delete%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% if current_user.id == @course.teacher %>
+  <%= form_for([@course, @course.projects.build]) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+    <%= f.label :numGroups %>
+    <%= f.text_field :numGroups %>
+    <%= f.submit%>
+  <% end %>
 <% end %>

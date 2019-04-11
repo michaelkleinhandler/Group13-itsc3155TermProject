@@ -74,7 +74,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def mayChange?
-    (@user.SuperAdmin? and @user.approved?) or ((@user.OrgAdmin? and @user.approved) and @user.uni_id == @record.uni_id)
+    (@user.SuperAdmin? and @user.approved?) or ((@user.OrgAdmin? and @user.approved) and @user.university_id == @record.university_id)
   end
 
   def teacherPortal?

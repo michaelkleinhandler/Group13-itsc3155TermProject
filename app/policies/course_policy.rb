@@ -25,7 +25,7 @@ class CoursePolicy
   end
 
   def show?
-    (@user.id == @course.teacher) or (@user.id == @course.enrollments.where('enrollments.user_id = ? and enrollments.course_id = ?', @user.id, @course.id).presence)
+    (@user.id == @course.teacher) or (@course.enrollments.where('enrollments.user_id = ? and enrollments.course_id = ?', @user.id, @course.id).present?)
   end
 
   def new?

@@ -1,0 +1,14 @@
+<%= @project.name %><br>
+
+
+<% @project.groups.sort_by(&:groupNum).each do |g| %>
+  <h3>Group <%= g.groupNum %></h3>
+  <a><%= link_to "Register for this group", new_group_membership_path(g.id)%></a>
+
+  <table class="table">
+    <thead>
+        <th>Full Name</th>
+        <th>Email</th>
+    </thead>
+  </table>
+<% end %>

@@ -11,17 +11,33 @@ class ProjectsController < ApplicationController
     @project.user_id = @user.id
     @project.semester_id = @course.semester_id
     if @project.save
-      redirect_back(fallback_location: root_path)
+      ActiveRecord::Base.transaction do
+        @project.numGroups.times do |n|
+          Group.create!(project_id: @project.id, groupNum:n+1, course_id: @course.id)
+        end
+        end
+        redirect_back(fallback_location: root_path)
     else
-      flash[:alert] = "Could not save Project"
+      flash[:Alert] = "Could not save Project"
       redirect_back(fallback_location: root_path)
-    end
+      end
+  end
+
+  def destroy
+    @course = Course.find(params[:course_id])
+    @project = @course.projects.find(params[:id])
+    @project.destroy
+    redirect_to course_path(@course)
+  end
+
+  def show
+    @project = Project.find(params[:id])
   end
 
   private
 
   def projectParams
-    params.require(:project).permit(:name, :semester_id, :user_id, :course_id)
+    params.require(:project).permit(:name, :semester_id, :user_id, :course_id, :numGroups)
   end
 
 end
