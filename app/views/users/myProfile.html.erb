@@ -6,7 +6,9 @@
       <p><%= @user.firstName %> <%= @user.lastName %><br></p>
       <%= @user.id %><br>
 
-      <%=  @user.uniName  %>
+      <%=  @user.uniName  %><br>
+      Number of Ratings: <%= @user.getRatings.count %>
+      Average Rating: <%= @user.getRatings.average(:rating) %>
 
       
 <!--      <ul>-->

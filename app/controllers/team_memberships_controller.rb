@@ -5,12 +5,15 @@ class TeamMembershipsController < ApplicationController
     @team_membership = @team.team_memberships.create
     @team_membership.user_id = current_user.id
     @team_membership.team_id = @team.id
-    if @team_membership.save
-      redirect_to team_path(@team)
+    if @team_membership.check_unique
+      if @team_membership.save
+        redirect_to project_team_path(@team_membership.team.project_id, @team_membership.team_id)
+      else
+        render project_path(@team_membership.team.project_id)
+      end
     else
-      flash[:Alert] = "Could not save Project"
-      redirect_back(fallback_location: root_path)
+      redirect_to project_path(@team_membership.team.project_id)
+      flash[:alert] = "You're already registered for this group"
     end
   end
-
 end

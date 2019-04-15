@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :team_memberships
   has_many :teams, :through => :group_memberships
   has_many :projects
+  has_many :ratings
   # belongs_to :university
   before_save :setCalcFields
   before_create :randomize_id
@@ -36,6 +37,12 @@ class User < ApplicationRecord
     Course.joins(:users).where('enrollments.user_id = ? and enrollments.banned = ?', self.id, false).references(:enrollments)
   end
 
+  def getRatings
+    # avg = User.joins(:ratings).where('ratings.user_id = ?', @user.id).average(:rating)
+    num = User.joins(:ratings).where('ratings.user_id = ?', self.id)
+
+  end
+
   private
 
   def randomize_id
@@ -43,7 +50,6 @@ class User < ApplicationRecord
       self.id = SecureRandom.random_number(1_000_000)
     end while User.where(id: self.id).exists?
   end
-
 
 
 end

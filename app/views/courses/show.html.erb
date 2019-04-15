@@ -2,7 +2,8 @@
   <thead>
     <th>Full Name</th>
     <th>Email Address</th>
-<!--    <th>CollaboRATING</th>-->
+    <th>CollaboRATING</th>
+    <th>Number of Ratings</th>
     <th>Options</th>
   </thead>
   <tbody>
@@ -10,7 +11,12 @@
       <tr>
        <td><%= s.fullName %></td>
         <td><%= s.email %></td>
-        <td><%# s. %></td>
+        <% if s.getRatings.count == 0 %>
+          <td>Not yet rated</td>
+        <% else %>
+          <td><%= s.getRatings.average(:rating).to_int %>/5</td>
+        <% end %>
+        <td><%= s.getRatings.count %></td>
 <!--        <td><%## %></td>-->
       </tr>
     <% end %>

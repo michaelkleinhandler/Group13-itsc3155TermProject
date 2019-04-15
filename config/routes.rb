@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   }
 
   resources :users
+
   resources :courses do
     resources :projects
   end
+
+  resources :users
 
   resources :projects do
     resources :teams
@@ -17,11 +20,15 @@ Rails.application.routes.draw do
       resources :team_memberships
   end
 
+  resources :team_memberships
+
+
 
   resources :universities
   resources :semesters
   resources :teacher
   resources :enrollment
+  resources :ratings, :except => [:new]
 
 
 
@@ -36,6 +43,7 @@ Rails.application.routes.draw do
   get 'myclasses' => 'courses#myclasses'
   get 'admin/edit/:id' => 'users#adminEdit', :as => 'admin_edit'
   get 'admin/resetpassword/:id' => 'users#passwordReset', :as => 'admin_password_reset'
+  get 'ratings/:team_id/:user_id/new' => 'ratings#new', :as => 'new_rating'
   patch 'admin/:id/togApp' => 'users#toggleApproved', :as => 'togApp'
   patch 'admin/:id/togSA' => 'users#toggleSuperAdmin', :as => 'togSA'
   patch 'admin/:id/togIns' => 'users#toggleInstructor', :as => 'togIns'
