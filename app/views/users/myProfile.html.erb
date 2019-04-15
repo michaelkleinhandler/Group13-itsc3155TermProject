@@ -1,16 +1,8 @@
 <body>
-<div class="row">
-    <%= image_tag @user.image, style: 'height:200px;width:auto;' %>
-  </div>
-    <div class="login">
+    <div class="profile">
       <p><%= @user.firstName %> <%= @user.lastName %><br></p>
-      <%= @user.id %><br>
+      <p>User ID: <%= @user.id %></p>
 
-      <%=  @user.uniName  %>
-
-      
-<!--      <ul>-->
-<!--         <li><%#= current_user.classes %>  </li>-->
-<!--      </ul>-->
+      <p>University: <%=  @user.uniName  %></p>
     </div>
 </body>
