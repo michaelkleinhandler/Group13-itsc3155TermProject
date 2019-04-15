@@ -5,6 +5,8 @@ class ProjectsController < ApplicationController
     @project = @course.projects.new
   end
 
+  # Creates a project and fills in the information needed such as the creator of the project, the course it's for,
+  # and the semester
   def create
     @course = Course.find(params[:course_id])
     @project = @course.projects.create(projectParams)
