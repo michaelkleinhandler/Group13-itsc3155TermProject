@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
   after_action :verify_authorized
 
-
+  # Shows the information about the user
   def show
     @checkFor = current_user
     authorize @checkFor
     @user = User.find(params[:id])
   end
 
+  # Shows the information about the specific user that is logged in
   def myProfile
     @checkFor = current_user
     authorize @checkFor
@@ -15,17 +16,19 @@ class UsersController < ApplicationController
     # @courses = @user.courses.all
   end
 
+  # Allows the user to edit their profile
   def edit
     authorize current_user
     @user = User.find(current_user.id)
   end
 
+  # Allows editing of a user with admin privilege
   def adminEdit
     authorize User.find(params[:id])
     @user = User.find(params[:id])
   end
 
-
+  # Allows updating of a user with admin privilege
   def adminUpdate
     authorize current_user
     @user = User.find(params[:id])
@@ -36,6 +39,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Allows updating of a user
   def update
     authorize current_user
     @user = User.find(params[:id])
@@ -50,6 +54,8 @@ class UsersController < ApplicationController
     end
   end
 
+
+  #
   def toggleApproved
     @user = User.find(params[:id])
     authorize @user
@@ -64,6 +70,7 @@ class UsersController < ApplicationController
     # end
   end
 
+  # Allows a user to gain super admin privileges/functions
   def toggleSuperAdmin
     authorize User.find(params[:id])
     @user = User.find(params[:id])
@@ -78,6 +85,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Allows a user to gain instructor privileges/functions
   def toggleInstructor
     authorize User.find(params[:id])
     @user = User.find(params[:id])
@@ -92,6 +100,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Allows a user to gain student privileges/functions
   def toggleStudent
     authorize User.find(params[:id])
     @user = User.find(params[:id])
@@ -106,6 +115,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Allows a user to gain organization admin privileges/functions
   def toggleOrgAdmin
     authorize User.find(params[:id])
     @user = User.find(params[:id])
@@ -120,11 +130,13 @@ class UsersController < ApplicationController
     end
   end
 
+  # Allows password to be reset to a different password
   def passwordReset
     @user = User.find(params[:id])
     authorize @user
   end
 
+  # Creates an enrollment number for a user
   def enrollmentNum
     @user = User.find(params[:id])
     @course = Course.find(params[:cid])
