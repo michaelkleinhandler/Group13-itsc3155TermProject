@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
   #
-  # def new
-  #   @project = Project.new
-  # end
+  def new
+    @course = Course.find(params[:course_id])
+    @project = @course.projects.new
+  end
 
   def create
     @course = Course.find(params[:course_id])
@@ -13,10 +14,10 @@ class ProjectsController < ApplicationController
     if @project.save
       ActiveRecord::Base.transaction do
         @project.numGroups.times do |n|
-          Group.create!(project_id: @project.id, groupNum:n+1, course_id: @course.id)
+          Team.create!(project_id: @project.id, groupNum:n+1, course_id: @course.id)
         end
         end
-        redirect_back(fallback_location: root_path)
+        redirect_to course_path(@course)
     else
       flash[:Alert] = "Could not save Project"
       redirect_back(fallback_location: root_path)
@@ -37,7 +38,7 @@ class ProjectsController < ApplicationController
   private
 
   def projectParams
-    params.require(:project).permit(:name, :semester_id, :user_id, :course_id, :numGroups)
+    params.require(:project).permit(:name, :semester_id, :user_id, :course_id, :numGroups, :availableDate, :dueDate)
   end
 
 end

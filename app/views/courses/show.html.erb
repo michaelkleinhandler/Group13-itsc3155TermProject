@@ -20,22 +20,26 @@
       <thead>
         <th>Project Name</th>
         <th>Groups</th>
+        <th>Due Date</th>
+        <% if current_user.id == @course.teacher %>
+          <th>Available Date</th>
+          <th>Options</th>
+        <% end %>
       </thead>
       <tbody>
         <% @course.projects.each do |p| %>
           <tr>
             <td><a href=<%=course_project_path(@course, p)%>><%= p.name %></a></td>
-            <td><%= link_to "Delete Project", course_project_path(@course, p), method: :delete%></td>
+            <td><%= p.numGroups %></td>
+            <td><%= p.dueDate %></td>
+            <% if current_user.id == @course.teacher %>
+              <td><%= p.availableDate %></td>
+              <td><%= link_to "Delete Project", course_project_path(@course, p), method: :delete%></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
     </table>
 <% if current_user.id == @course.teacher %>
-  <%= form_for([@course, @course.projects.build]) do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %><br>
-    <%= f.label :numGroups %>
-    <%= f.text_field :numGroups %>
-    <%= f.submit%>
-  <% end %>
+  <%= link_to "Create Project", new_course_project_path(@course.id) %>
 <% end %>

@@ -1,14 +1,22 @@
-<%= @project.name %><br>
+<h2><%= @project.name %><br></h2>
 
-
-<% @project.groups.sort_by(&:groupNum).each do |g| %>
-  <h3>Group <%= g.groupNum %></h3>
-  <a><%= link_to "Register for this group", new_group_membership_path(g.id)%></a>
 
   <table class="table">
     <thead>
-        <th>Full Name</th>
-        <th>Email</th>
+        <th>Group Number</th>
+        <th># of Members</th>
+        <th>Options</th>
     </thead>
+    <tbody>
+    <% @project.teams.sort_by(&:groupNum).each do |t| %>
+        <tr>
+          <td><%= t.groupNum %></td>
+          <td><%= t.team_memberships.count %></td>
+          <td>
+            <%= link_to "Show", team_path(t.id) %><br>
+            <%= link_to "Join Team", team_team_memberships_path(t), method: :post %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
   </table>
-<% end %>

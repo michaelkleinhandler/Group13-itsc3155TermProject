@@ -1,0 +1,24 @@
+<h1><%= "Team #{@team.groupNum}" %></h1>
+
+
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Options</th>
+  </thead>
+  <tbody>
+    <% @team.team_memberships.each do |t| %>
+      <tr>
+        <td><%= t.user.fullName %></td>
+        <td><%= t.user.email %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%# if @team.team_memberships.where('team_memberships.user_id = ?', current_user.id).present? %>
+<!--  <strong>You are a member of <%#= @team.team_memberships.group_id.groupNum %></strong>-->
+<%# else %>
+<%# end %>

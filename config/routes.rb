@@ -8,11 +8,21 @@ Rails.application.routes.draw do
   resources :courses do
     resources :projects
   end
+
+  resources :projects do
+    resources :teams
+  end
+
+  resources :teams do
+      resources :team_memberships
+  end
+
+
   resources :universities
   resources :semesters
   resources :teacher
   resources :enrollment
-  resources :group_memberships
+
 
 
   get 'welcome/index'

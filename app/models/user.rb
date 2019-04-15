@@ -6,8 +6,8 @@ class User < ApplicationRecord
   has_one :university
   has_many :enrollments
   has_many :courses, :through => :enrollments
-  has_many :group_memberships
-  has_many :groups, :through => :group_memberships
+  has_many :team_memberships
+  has_many :teams, :through => :group_memberships
   has_many :projects
   # belongs_to :university
   before_save :setCalcFields

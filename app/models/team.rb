@@ -1,6 +1,6 @@
-class Group < ApplicationRecord
+class Team < ApplicationRecord
   belongs_to :project, optional: true
-  has_many :group_memberships
+  has_many :team_memberships, dependent: :destroy
   has_many :users, through: :group_memberships
   before_create :randomize_id
 end
