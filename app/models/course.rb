@@ -17,11 +17,12 @@ class Course < ApplicationRecord
   # has_one :user
   # belongs_to :user, optional: true
 
-
+  # Sets the title of the course
   def setTitle
     self.title = "#{Semester.find(self.semester_id).name} #{self.subject} #{self.coursenum} #{self.section}"
   end
 
+  # Retrieves the teacher by their id
   def getTeacher
     if User.find_by_id(self.teacher).presence
       User.find_by_id(self.teacher).fullName
@@ -30,10 +31,12 @@ class Course < ApplicationRecord
     end
   end
 
+  # Retrieves the list of students from a specific course
   def getStudents
     User.joins(:courses).where('enrollments.course_id = ?', self.id).references(:enrollments)
   end
 
+  # Retrieves the list of student from a specific course who are banned
   def retrieveBanned(student)
     self.enrollments.where('enrollments.course_id = ? and enrollments.user_id = ? ', self.id, student.id).first.banned?
   end
