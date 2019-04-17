@@ -1,15 +1,8 @@
 <body>
     <div class="profile">
-      <p><%= @user.firstName %> <%= @user.lastName %><br></p>
-      <%= @user.id %><br>
-
-      <%=  @user.uniName  %><br>
-      Number of Ratings: <%= @user.getRatings.count %>
-      Average Rating: <%= @user.getRatings.average(:rating) %>
-
-      
-<!--      <ul>-->
-<!--         <li><%#= current_user.classes %>  </li>-->
-<!--      </ul>-->
+      <p><%= @user.firstName %> <%= @user.lastName %></p><br>
+      <p>University: <%=  @user.uniName  %></p>
+      <p>Number of Ratings: <%= @user.getRatings.count %></p>
+      <p>Average Rating: <%= @user.getRatings.average(:rating) %></p>
     </div>
 </body>
