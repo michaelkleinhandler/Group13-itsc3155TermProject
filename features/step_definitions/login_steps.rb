@@ -4,17 +4,18 @@ Given("I am on the login screen") do
   visit root_path
 end
 
-When("I fill out the username and password") do
+When("I click on the {string} button") do |page_name|
   #user = FactoryBot.create(:user)
   #login_as(user, :scope => :user)
-  fill_in 'Email', with: 'will@will.com'
-  fill_in 'Password', with: 'g2c256zx2'
+  click_on('Sign Up')
 end
 
-Then("I click on the {string} button") do |string|
-  click_on('Sign in')
-end
+# Then("I click on the {string} button") do |string|
+#   click_on('Sign in')
+# end
 
-Then("I should see the {string} button") do |string|
-  page.should have_content("My Classes")
+Then("I should see the {string} buttons") do |page_name|
+  page.should have_content("Sign up")
+  page.should have_content("Email")
+  page.should have_content ("Password")
 end
