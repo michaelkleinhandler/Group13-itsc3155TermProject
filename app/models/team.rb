@@ -1,7 +1,8 @@
 class Team < ApplicationRecord
-  belongs_to :project, optional: true
+  belongs_to :project
   has_many :team_memberships, dependent: :destroy
-  has_many :users, through: :group_memberships
+  has_many :users, through: :team_memberships
+  has_many :ratings
   before_create :randomize_id
 end
 

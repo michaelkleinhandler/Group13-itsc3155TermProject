@@ -26,23 +26,23 @@ class EnrollmentController < ApplicationController
   end
 
   def destroy
-    @course = Course.find(params[:cid])
-    authorize @course
+    @project = Course.find(params[:cid])
+    authorize @project
     @enrollment = Enrollment.find(params[:id])
     @enrollment.destroy
   end
 
 
   def unEnroll
-    @course = Course.find(params[:cid])
-    authorize @course
+    @project = Course.find(params[:cid])
+    authorize @project
     Enrollment.where('enrollments.course_id = ? and enrollments.user_id = ?', params[:cid], params[:sid]).destroy_all
     redirect_to root_path
   end
 
   def toggleBan
-    @course = Course.find(params[:cid])
-    authorize @course
+    @project = Course.find(params[:cid])
+    authorize @project
     @enrollment = Enrollment.where('enrollments.course_id = ? and enrollments.user_id = ?', params[:cid], params[:sid]).limit(1)
     @enrollment.toggleBanning
     redirect_back(fallback_location: root_path)
@@ -50,7 +50,7 @@ class EnrollmentController < ApplicationController
   end
 
   def enrollmentNum
-    @course = Course.find(params[:cid])
+    @project = Course.find(params[:cid])
     @user = User.find(params[:sid])
     Enrollment.enrollmentNum
   end

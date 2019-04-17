@@ -1,6 +1,6 @@
 <h1>Edit a Course</h1>
 
-<%= form_for @course do |f| %>
+<%= form_for @project do |f| %>
   <div class="field">
     <%= f.label 'Semester'%><br>
     <%= f.select(:semester_id, Semester.all.collect {|s| [ s.name, s.id] if s.university_id == User.find(current_user.id).university_id }) %><br>

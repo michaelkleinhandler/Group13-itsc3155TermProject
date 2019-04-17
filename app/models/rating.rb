@@ -1,6 +1,8 @@
 class Rating < ApplicationRecord
-  belongs_to :user
-  belongs_to :team_membership
+  belongs_to :user, optional: true
+  belongs_to :team_membership, optional: true
+  belongs_to :project, optional: true
+  belongs_to :team
   # before_create :check_unique
 
   #

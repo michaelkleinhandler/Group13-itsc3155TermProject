@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :enrollments
   has_many :courses, :through => :enrollments
   has_many :team_memberships
-  has_many :teams, :through => :group_memberships
+  has_many :teams, :through => :team_memberships
   has_many :projects
   has_many :ratings
   # belongs_to :university
@@ -41,6 +41,22 @@ class User < ApplicationRecord
     # avg = User.joins(:ratings).where('ratings.user_id = ?', @user.id).average(:rating)
     num = User.joins(:ratings).where('ratings.user_id = ?', self.id)
 
+  end
+
+  def hasTeam?(project)
+    User.joins(:team_memberships).where('team_memberships.user_id = ? and team_memberships.project_id = ?', self.id, project.id).present?
+  end
+
+  def myTeams(project)
+    Team.joins(:team_memberships).where('teams.project_id = ? and team_memberships.user_id = ?', project.id, self.id )
+  end
+
+  def enrolled(courseID)
+    User.joins(:enrollments).where('enrollments.user_id = ? and enrollments.course_id = ?', self.id, courseID).present?
+  end
+
+  def isTeacher(courseID)
+    Course.find(courseID).teacher == self.id
   end
 
   private

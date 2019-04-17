@@ -1,4 +1,4 @@
-<%= form_for @rating do |f| %>
+<%= form_for([@team_membership, @team_membership.ratings.build]) do |f| %>
   <%= f.select :rating, options_for_select([0,1,2,3,4,5]), prompt: "Choose Rating" %>
   <%= f.submit %>
 

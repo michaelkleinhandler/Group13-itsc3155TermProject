@@ -139,7 +139,7 @@ class UsersController < ApplicationController
   # Creates an enrollment number for a user
   def enrollmentNum
     @user = User.find(params[:id])
-    @course = Course.find(params[:cid])
+    @project = Course.find(params[:cid])
     @user.enrollmentNum
   end
 

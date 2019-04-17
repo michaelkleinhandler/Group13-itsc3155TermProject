@@ -98,7 +98,7 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit([:title, :semester_id, :year, :subject, :section, :teacher, :coursenum, :uni_id, :User_id, :course_id])
+    params.require(:project).permit([:title, :semester_id, :year, :subject, :section, :teacher, :coursenum, :uni_id, :User_id, :course_id])
   end
 
 end

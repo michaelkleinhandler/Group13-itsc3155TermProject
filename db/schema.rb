@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_15_031643) do
+ActiveRecord::Schema.define(version: 2019_04_17_181338) do
 
   create_table "courses", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -20,13 +20,10 @@ ActiveRecord::Schema.define(version: 2019_04_15_031643) do
     t.string "subject"
     t.string "coursenum"
     t.string "section"
-    t.integer "randID"
     t.integer "User_id"
     t.integer "uni_id"
     t.integer "semester_id"
-    t.index ["User_id"], name: "index_courses_on_User_id"
     t.index ["semester_id"], name: "index_courses_on_semester_id"
-    t.index ["uni_id"], name: "index_courses_on_uni_id"
   end
 
   create_table "enrollments", force: :cascade do |t|
@@ -62,8 +59,12 @@ ActiveRecord::Schema.define(version: 2019_04_15_031643) do
     t.integer "rating"
     t.integer "created_by"
     t.integer "project_id"
+    t.integer "team_id"
+    t.integer "team_membership_id"
     t.index ["course_id"], name: "index_ratings_on_course_id"
     t.index ["project_id"], name: "index_ratings_on_project_id"
+    t.index ["team_id"], name: "index_ratings_on_team_id"
+    t.index ["team_membership_id"], name: "index_ratings_on_team_membership_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
@@ -91,7 +92,6 @@ ActiveRecord::Schema.define(version: 2019_04_15_031643) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "courses_id"
-    t.index ["courses_id"], name: "index_students_on_courses_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -104,6 +104,8 @@ ActiveRecord::Schema.define(version: 2019_04_15_031643) do
     t.integer "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.index ["project_id"], name: "index_team_memberships_on_project_id"
     t.index ["team_id"], name: "index_team_memberships_on_team_id"
     t.index ["user_id"], name: "index_team_memberships_on_user_id"
   end
@@ -120,8 +122,6 @@ ActiveRecord::Schema.define(version: 2019_04_15_031643) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "uniName"
-    t.integer "uniID_id"
-    t.index ["uniID_id"], name: "index_universities_on_uniID_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -136,7 +136,6 @@ ActiveRecord::Schema.define(version: 2019_04_15_031643) do
     t.string "lastName"
     t.text "bio"
     t.string "image", default: "/images/profileImages/kid yelling.jpg"
-    t.string "university"
     t.string "defRole"
     t.boolean "Instructor"
     t.boolean "Student"

@@ -1,8 +1,11 @@
 class ProjectsController < ApplicationController
+  after_action :verify_authorized
+
   #
   def new
     @course = Course.find(params[:course_id])
     @project = @course.projects.new
+    authorize @project
   end
 
   # Creates a project and fills in the information needed such as the creator of the project, the course it's for,
@@ -10,13 +13,14 @@ class ProjectsController < ApplicationController
   def create
     @course = Course.find(params[:course_id])
     @project = @course.projects.create(projectParams)
+    authorize @project
     @user = current_user
     @project.user_id = @user.id
-    @project.semester_id = @course.semester_id
+    @project.semester_id = @project.semester_id
     if @project.save
       ActiveRecord::Base.transaction do
         @project.numGroups.times do |n|
-          Team.create!(project_id: @project.id, groupNum:n+1, course_id: @course.id)
+          Team.create!(project_id: @project.id, groupNum:n+1, course_id: @project.id)
         end
         end
         redirect_to course_path(@course)
@@ -29,13 +33,33 @@ class ProjectsController < ApplicationController
   def destroy
     @course = Course.find(params[:course_id])
     @project = @course.projects.find(params[:id])
+    authorize @project
     @project.destroy
     redirect_to course_path(@course)
   end
 
   def show
     @project = Project.find(params[:id])
+    authorize @project
   end
+
+  def edit
+    @course = Course.find(params[:course_id])
+    @project = @course.projects.find(params[:id])
+    authorize @project
+  end
+
+  def update
+    @project = Project.find(params[:id])
+    authorize @project
+    if @project.update(projectParams)
+      redirect_to course_project_path(@project.course.id)
+    else
+      render 'edit'
+    end
+  end
+
+
 
   private
 

@@ -6,9 +6,6 @@ class Course < ApplicationRecord
   validates :section, presence: true
   before_create :randomize_id
   before_save :setTitle
-  # before_save :normalizeSemester
-  # has_one :semester, foreign_key: :randID
-  # belongs_to :university, foreign_key: :uni_id, optional: true
   has_many :enrollments
   has_many :users,through: :enrollments, dependent: :destroy
   belongs_to :semester

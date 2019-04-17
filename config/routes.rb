@@ -14,13 +14,22 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :teams
+    resources :ratings
   end
 
   resources :teams do
       resources :team_memberships
+      resources :ratings
   end
 
-  resources :team_memberships
+  resources :ratings do
+    resources :users
+  end
+
+
+  resources :team_memberships do
+    resources :ratings
+  end
 
 
 
@@ -28,7 +37,7 @@ Rails.application.routes.draw do
   resources :semesters
   resources :teacher
   resources :enrollment
-  resources :ratings, :except => [:new]
+  # resources :ratings, :except => [:new]
 
 
 
@@ -43,7 +52,7 @@ Rails.application.routes.draw do
   get 'myclasses' => 'courses#myclasses'
   get 'admin/edit/:id' => 'users#adminEdit', :as => 'admin_edit'
   get 'admin/resetpassword/:id' => 'users#passwordReset', :as => 'admin_password_reset'
-  get 'ratings/:team_id/:user_id/new' => 'ratings#new', :as => 'new_rating'
+  # get 'ratings/:team_id/:user_id/new' => 'ratings#new', :as => 'new_rating'
   patch 'admin/:id/togApp' => 'users#toggleApproved', :as => 'togApp'
   patch 'admin/:id/togSA' => 'users#toggleSuperAdmin', :as => 'togSA'
   patch 'admin/:id/togIns' => 'users#toggleInstructor', :as => 'togIns'
@@ -51,6 +60,7 @@ Rails.application.routes.draw do
   patch 'admin/:id/togStudent' => 'users#toggleStudent', :as => 'togStu'
   post 'banStudent/:cid/:sid' => 'enrollment#toggleBan', :as => 'banStudent'
   post 'unenroll/:cid/:sid' => 'enrollment#unEnroll', :as => 'removeEnrollment'
+  post 'team/:team_id/team_memberships' => 'team_memberships#joinGroup', :as => 'team_joinGroup'
 
 
 

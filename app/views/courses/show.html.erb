@@ -34,15 +34,17 @@
       </thead>
       <tbody>
         <% @course.projects.each do |p| %>
-          <tr>
-            <td><a href=<%=course_project_path(@course, p)%>><%= p.name %></a></td>
-            <td><%= p.numGroups %></td>
-            <td><%= p.dueDate %></td>
-            <% if current_user.id == @course.teacher %>
-              <td><%= p.availableDate %></td>
-              <td><%= link_to "Delete Project", course_project_path(@course, p), method: :delete%></td>
-            <% end %>
-          </tr>
+          <% if (Date.today >= p.availableDate and Date.today <= p.dueDate) or @course.teacher == current_user.id %>
+            <tr>
+              <td><a href=<%=course_project_path(@course, p)%>><%= p.name %></a></td>
+              <td><%= p.numGroups %></td>
+              <td><%= p.dueDate %></td>
+              <% if current_user.id == @course.teacher %>
+                <td><%= p.availableDate %></td>
+                <td><%= link_to "Delete Project", course_project_path(@course, p), method: :delete%></td>
+              <% end %>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

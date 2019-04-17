@@ -3,6 +3,7 @@ class Project < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :semester, optional: true
   has_many :teams, dependent: :destroy
+  has_many :ratings, dependent: :destroy
   before_save :saveActions
   before_create :createActions
   before_create :randomize_id

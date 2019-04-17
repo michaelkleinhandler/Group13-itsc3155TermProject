@@ -1,10 +1,12 @@
 <h2><%= @project.name %><br></h2>
-
-
+<% if current_user.hasTeam?(@project) %>
+  <%= render 'student_group' %>
+<% else %>
   <table class="table">
     <thead>
         <th>Group Number</th>
         <th># of Members</th>
+        <th> Average Team Rating</th>
         <th>Options</th>
     </thead>
     <tbody>
@@ -13,10 +15,22 @@
           <td><%= t.groupNum %></td>
           <td><%= t.team_memberships.count %></td>
           <td>
+          <% if t.team_memberships.count > 0 %>
+              <% avg = 0 %>
+              <% t.team_memberships.each do |r| %>
+                <% avg += (r.user.getRatings.average(:rating)) %>
+              <% end %>
+              <%= avg/t.team_memberships.count %>
+            <% else %>
+              No Rating
+            <% end %>
+          </td>
+          <td>
             <%= link_to "Show", team_path(t.id) %><br>
-            <%= link_to "Join Team", team_team_memberships_path(t), method: :post %>
+            <%= link_to "Join Team", team_joinGroup_path(t), method: :post %>
           </td>
         </tr>
     <% end %>
     </tbody>
   </table>
+<% end %>

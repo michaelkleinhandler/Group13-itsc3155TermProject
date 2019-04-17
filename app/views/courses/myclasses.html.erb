@@ -6,17 +6,15 @@
     <th>Teacher</th>
     <th>Start Date</th>
     <th>End Date</th>
-    <th> show </th>
   </thead>
 
   <tbody>
   <% @courses.each do |c| %>
   <tr>
-    <td><%= c.title %></td>
+    <td><%= link_to c.title, course_path(c) %></td>
     <td><%= c.getTeacher %></td>
     <td><%= c.semester.beginDate %></td>
     <td><%= c.semester.endDate %></td>
-    <td><%= link_to "Show Course", course_path(c) %></td>
   </tr>
   <% end %>
   </tbody>

@@ -1,0 +1,28 @@
+<% current_user.myTeams(@project).each do |f| %>
+          <strong>Group <%= f.groupNum %></strong>
+      <table class="table">
+        <thead>
+          <th>Name</th>
+          <th>Email</th>
+          <th>CollaboRATING</th>
+          <th>Options</th>
+        </thead>
+        <tbody>
+<% f.team_memberships.each do |t| %>
+        <tr>
+          <td><%= t.user.fullName %></td>
+          <td><%= t.user.email %></td>
+          <td>
+          <% if t.user.getRatings.count > 0 %>
+            <%= t.user.getRatings.average(:rating) %>
+          <% else %>
+            Not Yet Rated
+          <% end %>
+          </td>
+          <td><%= link_to "Rate User", new_team_membership_rating_path(t) %></td>
+        </tr>
+<% end %>
+        </tbody>
+      </table>
+
+<% end %>

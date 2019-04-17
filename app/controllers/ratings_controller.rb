@@ -1,14 +1,27 @@
 class RatingsController < ApplicationController
+  after_action :verify_authorized
 
   def new
-    @user = User.find(params[:user_id])
-    @team = Team.find(params[:team_id])
-    @rating = Rating.new
+    @team_membership = TeamMembership.find(params[:team_membership_id])
+    @user = User.find(@team_membership.user_id)
+    @rating = @team_membership.ratings.new
+    authorize @rating
   end
 
   def create
+    @team_membership = TeamMembership.find(params[:team_membership_id])
+    @project = Project.find(@team_membership.project_id)
     @rating = Rating.new(ratingParams)
-    @rating.save
+    @rating.team_id = @team_membership.team_id
+    @rating.project_id = @team_membership.project_id
+    @rating.created_by = current_user.id
+    @rating.user_id = @team_membership.user_id
+    @rating.course_id = @project.course_id
+    authorize @rating
+    if @rating.save
+      redirect_to project_path(@project)
+    else
+    end
 
   end
 
