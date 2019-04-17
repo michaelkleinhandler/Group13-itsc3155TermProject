@@ -8,5 +8,5 @@ Feature: Login
     Given I am on the login screen
     When I fill out the username and password
     Then I click on the "commit" button
-    And I should see the "My Classes" button
+    Then I should see the "My Classes" button
   
