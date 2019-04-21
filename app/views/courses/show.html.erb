@@ -41,8 +41,11 @@
               <td><%= p.dueDate %></td>
               <% if current_user.id == @course.teacher %>
                 <td><%= p.availableDate %></td>
-                <td><%= link_to "Delete Project", course_project_path(@course, p), method: :delete%></td>
-              <% end %>
+                <td>
+                  <%= link_to "Edit", edit_course_project_path(@course, p) %><br>
+                  <%= link_to "Delete", course_project_path(@course, p), method: :delete%>
+                </td>
+            <% end %>
             </tr>
           <% end %>
         <% end %>

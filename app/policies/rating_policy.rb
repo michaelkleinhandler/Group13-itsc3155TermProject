@@ -6,8 +6,10 @@ class RatingPolicy < ApplicationPolicy
   end
 
   def new?
-    if @user.id != @rating.team_membership.user_id
-      true
+    if @user.id != @rating.team_membership.user_id and (@user.enrollments.where('enrollments.user_id = ? and enrollments.course_id = ?', @user.id, @rating.team_membership.course_id).present?)
+      if @rating.ratingDates
+        true
+      end
     end
   end
 

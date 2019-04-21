@@ -1,8 +1,8 @@
 require 'rails_helper'
-require 'factories'
+# require 'factories'
 RSpec.describe "Sessions" do
   it "signs user in and out" do
-    user = create(:user)    ## uncomment if using FactoryBot
+    user = FactoryBot.create(:user)    ## uncomment if using FactoryBot
     #user = User.create(email: 'will@will.com', password: "g2c256zx2", password_confirmation: "g2c256zx2") ## uncomment if not using FactoryBot
     sign_in user
     get root_path

@@ -1,28 +1,42 @@
 <% current_user.myTeams(@project).each do |f| %>
-          <strong>Group <%= f.groupNum %></strong>
-      <table class="table">
-        <thead>
-          <th>Name</th>
-          <th>Email</th>
-          <th>CollaboRATING</th>
-          <th>Options</th>
-        </thead>
-        <tbody>
-<% f.team_memberships.each do |t| %>
-        <tr>
-          <td><%= t.user.fullName %></td>
-          <td><%= t.user.email %></td>
-          <td>
+  <strong>Group <%= f.groupNum %></strong><br>
+  <%= "You may begin rating your groupmates on #{@project.dueDate+1}. All ratings must be submitted by #{@project.dueDate+8}" %><br>
+  <table class="table">
+    <thead>
+    <th>Name</th>
+    <th>Email</th>
+    <th>CollaboRATING</th>
+    <% if Date.today >= @project.dueDate + 1 and Date.today <= @project.dueDate + 8 %>
+      <th>Options</th>
+    <% end %>
+    </thead>
+    <tbody>
+    <% f.team_memberships.each do |t| %>
+      <tr>
+        <td><%= t.user.fullName %></td>
+        <td><%= t.user.email %></td>
+        <td>
           <% if t.user.getRatings.count > 0 %>
             <%= t.user.getRatings.average(:rating) %>
           <% else %>
             Not Yet Rated
           <% end %>
+        </td>
+
+          <% if Date.today >= @project.dueDate + 1 and Date.today <= @project.dueDate + 8 %>
+          <td>
+            <% if not t.user.getRatings.where('ratings.user_id = ? and ratings.created_by = ? and ratings.project_id = ?', t.user.id, current_user.id, t.project_id).present? and current_user.id != t.user.id %>
+              <%= link_to "Rate User", new_team_membership_rating_path(t) %>
+            <% elsif current_user.id == t.user.id %>
+              You cannot rate yourself :)
+            <% else %>
+              You've already rated this student
+            <% end %>
           </td>
-          <td><%= link_to "Rate User", new_team_membership_rating_path(t) %></td>
-        </tr>
-<% end %>
-        </tbody>
-      </table>
+          <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 
 <% end %>

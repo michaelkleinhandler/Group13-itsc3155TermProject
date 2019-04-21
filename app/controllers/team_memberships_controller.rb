@@ -7,6 +7,7 @@ class TeamMembershipsController < ApplicationController
     @team_membership.user_id = current_user.id
     @team_membership.team_id = @team.id
     @team_membership.project_id = @team.project_id
+    @team_membership.course_id = @team.course_id
     authorize @team_membership
     if @team_membership.check_unique
       if @team_membership.save

@@ -18,11 +18,16 @@ class RatingsController < ApplicationController
     @rating.user_id = @team_membership.user_id
     @rating.course_id = @project.course_id
     authorize @rating
-    if @rating.save
-      redirect_to project_path(@project)
+    if @rating.check_unique
+      if @rating.save
+        redirect_to project_path(@project)
+      else
+        redirect_to new_team_membership_rating_path(@team_membership)
+      end
     else
+      redirect_to project_path(@project)
+      flash[:alert] = "You've already rated this user"
     end
-
   end
 
   private
