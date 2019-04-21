@@ -10,19 +10,28 @@ class EnrollmentController < ApplicationController
   def create
     authorize Enrollment
     @user = current_user
-    @enrollment = Enrollment.new(enrollment_params)
+    @enrollment = @user.enrollments.new(enrollment_params)
     @enrollment.user_id = @user.id
-    if @enrollment.check_unique
+    if @enrollment.check_allowed == true
       if @enrollment.save
         redirect_to '/myclasses'
       else
-        flash[:alert] = "The course you have requested cannot be found or enrollment for it has been disabled"
+        flash[:alert] = "The enrollment cannot be saved"
         render '/enrollment/new'
       end
-    else
+    elsif @enrollment.check_allowed == "NA"
+      redirect_to '/enrollme'
+      flash[:alert] = "You are not authorized to join this course. You are not enrolled at this institution"
+    elsif @enrollment.check_allowed == "AE"
       redirect_to '/enrollme'
       flash[:alert] = "You're already registered for this course OR you've been banned"
+    elsif @enrollment.check_allowed == "NF"
+      redirect_to '/enrollme'
+      flash[:alert] = "Could not find the course you attemped to register for"
     end
+
+
+
   end
 
   def destroy

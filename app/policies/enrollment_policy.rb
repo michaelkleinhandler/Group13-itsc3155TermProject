@@ -1,8 +1,8 @@
 class EnrollmentPolicy < ApplicationPolicy
 
-  def initialize(user,course)
+  def initialize(user,enrollment)
     @user = user
-    @project = course
+    @enrollment = enrollment
   end
 
   def new?
@@ -10,11 +10,11 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+      true
   end
 
   def destroy?
-    if (@user.id == @project.teacher) or ((@user.university_id == @project.uni_id) and @user.OrgAdmin?) or @user.SuperAdmin?
+    if (@user.id == @enrollment.teacher) or ((@user.university_id == @course.uni_id) and @user.OrgAdmin?) or @user.SuperAdmin?
       true
     end
   end
