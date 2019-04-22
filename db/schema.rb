@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_18_043915) do
+
+ActiveRecord::Schema.define(version: 2019_04_22_210154) do
 
   create_table "courses", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -76,6 +77,15 @@ ActiveRecord::Schema.define(version: 2019_04_18_043915) do
     t.index ["user_id"], name: "index_ratings_tables_on_user_id"
   end
 
+  create_table "enrollments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "course_id"
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
+  end
+
   create_table "semesters", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -92,6 +102,7 @@ ActiveRecord::Schema.define(version: 2019_04_18_043915) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "courses_id"
+    t.index ["courses_id"], name: "index_students_on_courses_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -124,6 +135,8 @@ ActiveRecord::Schema.define(version: 2019_04_18_043915) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "uniName"
+    t.integer "uniID_id"
+    t.index ["uniID_id"], name: "index_universities_on_uniID_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -138,6 +151,7 @@ ActiveRecord::Schema.define(version: 2019_04_18_043915) do
     t.string "lastName"
     t.text "bio"
     t.string "image", default: "/images/profileImages/kid yelling.jpg"
+    t.string "university"
     t.string "defRole"
     t.boolean "Instructor"
     t.boolean "Student"
