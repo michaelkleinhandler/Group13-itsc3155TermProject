@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable :recoverable,
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable
-  has_one :university
+  # has_one :university
   has_many :enrollments
   has_many :courses, :through => :enrollments
   has_many :team_memberships
