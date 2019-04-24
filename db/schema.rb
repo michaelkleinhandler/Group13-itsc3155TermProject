@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_23_050214) do
+ActiveRecord::Schema.define(version: 2019_04_24_024837) do
 
   create_table "courses", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2019_04_23_050214) do
     t.integer "user_id"
     t.integer "course_id"
     t.boolean "banned", default: false
-    t.integer "course_id"
     t.index ["banned"], name: "index_enrollments_on_banned"
     t.index ["course_id"], name: "index_enrollments_on_course_id"
     t.index ["user_id"], name: "index_enrollments_on_user_id"
