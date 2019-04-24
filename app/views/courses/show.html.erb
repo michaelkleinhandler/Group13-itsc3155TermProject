@@ -34,7 +34,7 @@
       </thead>
       <tbody>
         <% @course.projects.each do |p| %>
-          <% if (Date.today >= p.availableDate and Date.today <= p.dueDate) or @course.teacher == current_user.id %>
+          <% if (Date.today >= p.availableDate and Date.today <= p.dueDate + 8) or @course.teacher == current_user.id %>
             <tr>
               <td><a href=<%=course_project_path(@course, p)%>><%= p.name %></a></td>
               <td><%= p.numGroups %></td>
@@ -52,5 +52,8 @@
       </tbody>
     </table>
 <% if current_user.id == @course.teacher %>
-  <%= link_to "Create Project", new_course_project_path(@course.id) %>
+  <%= link_to "Create Project", new_course_project_path(@course.id) %><br>
+<% end %>
+<% if current_user.Student? %>
+  <%= link_to "My Classes", '/myclasses' %>
 <% end %>

@@ -2,15 +2,21 @@ class EnrollmentController < ApplicationController
   after_action :verify_authorized
 
   def new
-    authorize Enrollment
     @enrollment = Enrollment.new
-    @user = current_user
+    @user = User.find(params[:user_id])
+    authorize @enrollment
+  end
+
+  def adminNew
+    @enrollment = Enrollment.new
+    authorize @enrollment
+    @user = User.find(params[:user_id])
   end
 
   def create
-    authorize Enrollment
-    @user = current_user
+    @user = User.find(params[:user_id])
     @enrollment = @user.enrollments.new(enrollment_params)
+    authorize @enrollment
     @enrollment.user_id = @user.id
     if @enrollment.check_allowed == true
       if @enrollment.save
@@ -20,13 +26,13 @@ class EnrollmentController < ApplicationController
         render '/enrollment/new'
       end
     elsif @enrollment.check_allowed == "NA"
-      redirect_to '/enrollme'
+      redirect_back(fallback_location: root_path)
       flash[:alert] = "You are not authorized to join this course. You are not enrolled at this institution"
     elsif @enrollment.check_allowed == "AE"
-      redirect_to '/enrollme'
+      redirect_back(fallback_location: root_path)
       flash[:alert] = "You're already registered for this course OR you've been banned"
     elsif @enrollment.check_allowed == "NF"
-      redirect_to '/enrollme'
+      redirect_back(fallback_location: root_path)
       flash[:alert] = "Could not find the course you attemped to register for"
     end
 
@@ -69,7 +75,7 @@ class EnrollmentController < ApplicationController
   private
 
   def enrollment_params
-    params.require(:enrollment).permit([:course_id, :banned])
+    params.require(:enrollment).permit([:course_id, :banned, :user_id])
   end
 
 end

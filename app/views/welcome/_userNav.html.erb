@@ -14,7 +14,7 @@
           </form>
         </th>
         <th>
-          <form action="enrollme">
+          <form action=<%= "enrollme/#{current_user.id}" %>>
             <input type="submit" value="Enroll in a course"/>
           </form>
         </th>

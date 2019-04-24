@@ -6,11 +6,19 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    # if @user.id == @enrollment.user_id
+      true
+    # end
   end
 
   def create?
-      true
+      if @user.id == @enrollment.user_id or isAdmin?
+        true
+      end
+  end
+
+  def adminNew?
+    isAdmin?
   end
 
   def destroy?

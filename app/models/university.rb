@@ -2,7 +2,7 @@ class University < ApplicationRecord
   before_create :randomize_id
   # has_many :users
   has_many :semesters, foreign_key: :university_id
-  belongs_to :user, optional: true
+  # belongs_to :user, optional: true
 
 
 

@@ -59,6 +59,10 @@ class User < ApplicationRecord
     Course.find(courseID).teacher == self.id
   end
 
+  def getUniName
+    University.find(self.university_id).uniName
+  end
+
   private
 
   def randomize_id

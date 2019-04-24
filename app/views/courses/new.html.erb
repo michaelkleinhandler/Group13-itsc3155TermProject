@@ -1,11 +1,11 @@
-<% if @project.errors.any? %>
+<% if @course.errors.any? %>
   <div id="error_explanation">
     <h2>
-      <%= pluralize(@project.errors.count, "error") %> prohibited
+      <%= pluralize(@course.errors.count, "error") %> prohibited
       this article from being saved:
     </h2>
     <ul>
-      <% @project.errors.full_messages.each do |msg| %>
+      <% @course.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>
@@ -14,7 +14,7 @@
 
 <h1>Create a new course</h1>
 
-<%= form_for @project, :url => {:action => "create" } do |f| %>
+<%= form_for @course, :url => {:action => "create" } do |f| %>
   <div class="field">
     <%= f.label 'Semester'%><br>
     <%= f.select(:semester_id, Semester.all.collect {|s| [ s.name, s.id] if s.university_id == User.find(current_user.id).university_id }) %><br>

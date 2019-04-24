@@ -53,6 +53,7 @@
   </div>
     <% @courses.each do |c| %>
         <div class="container-fluid drivers-main tab-pane" id=<%= c.id %> role="tabpanel">
+          <%= link_to "Show Course", course_path(c) %>
           <table class="table">
             <thead>
             <th>Name</th>

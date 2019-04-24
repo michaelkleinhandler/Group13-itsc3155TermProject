@@ -11,9 +11,10 @@ class TeamMembershipsController < ApplicationController
     authorize @team_membership
     if @team_membership.check_unique
       if @team_membership.save
-        redirect_to project_team_path(@team_membership.team.project_id, @team_membership.team_id)
+        redirect_to project_path(@team_membership.team.project_id)
       else
         redirect_to project_path(@team_membership.team.project_id)
+        flash[:alert] = "Could not join group"
       end
     else
       redirect_to project_path(@team_membership.project_id)

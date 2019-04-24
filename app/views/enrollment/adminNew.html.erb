@@ -1,0 +1,7 @@
+<h1>Enroll me page</h1>
+<p>This is where you can enroll in a course</p>
+<%= form_for @enrollment, :url => { :action => "create" } do |f| %>
+  <%= f.label :course_id %>
+  <%= f.text_field :course_id %><br>
+  <%= f.submit "Enroll" %>
+<% end %>
