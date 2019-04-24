@@ -1,1 +1,21 @@
 <h1>List of my classes</h1>
+
+<table class="table">
+  <thead>
+    <th>Title</th>
+    <th>Teacher</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+  </thead>
+
+  <tbody>
+  <% @courses.each do |c| %>
+  <tr>
+    <td><%= link_to c.title, course_path(c) %></td>
+    <td><%= c.getTeacher %></td>
+    <td><%= c.semester.beginDate %></td>
+    <td><%= c.semester.endDate %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

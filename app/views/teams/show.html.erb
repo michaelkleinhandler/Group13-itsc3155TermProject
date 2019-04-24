@@ -1,0 +1,33 @@
+<h1><%= "Team #{@team.groupNum}" %></h1>
+<% if Date.today <= @team.project.dueDate %>
+  <%= button_to "Join Team", team_joinGroup_path(@team), method: :post %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>Email</th>
+    <th>CollaboRATING</th>
+<!--    <th>Options</th>-->
+  </thead>
+  <tbody>
+    <% @team.team_memberships.each do |t| %>
+      <tr>
+        <td><%= t.user.fullName %></td>
+        <td><%= t.user.email %></td>
+        <td>
+          <% if t.user.getRatings.count > 0 %>
+            <%= t.user.getRatings.average(:rating) %>
+          <% else %>
+            User not yet rated
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%# if @team.team_memberships.where('team_memberships.user_id = ?', current_user.id).present? %>
+<!--  <strong>You are a member of <%#= @team.team_memberships.group_id.groupNum %></strong>-->
+<%# else %>
+<%# end %>

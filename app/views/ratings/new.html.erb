@@ -1,0 +1,5 @@
+<%= form_for([@team_membership, @team_membership.ratings.build]) do |f| %>
+  <%= f.select :rating, options_for_select([0,1,2,3,4,5]), prompt: "Choose Rating" %>
+  <%= f.submit "Rate", data: {confirm: "Are you sure you'd like to submit this rating? Once submitted, it cannot be undone."} %>
+
+<% end %>

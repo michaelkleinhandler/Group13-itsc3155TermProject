@@ -1,5 +1,12 @@
 <!DOCTYPE html>
+<!--<script src="jquery.min.js" type="text/javascript"></script>-->
+
 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<%#= javascript_include_tag "bootstrap" %>
+<%#= stylesheet_link_tag 'nav', media: 'all', 'data-turbolinks-track': 'reload' %>
+<!--<link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+<!--<script src="bootstrap.min.js" type="text/javascript"></script>-->
 
 <html>
 
@@ -9,7 +16,7 @@
     <% if not user_signed_in? %>
       You are not signed in
     <% else %>
-    <div id="userAck">
+    <div id="userAck" class = "text-right">
       Hello, <%= current_user.firstName %>!
       <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
       <%= link_to('Edit Profile', edit_user_registration_path) %>
@@ -20,9 +27,9 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <% if user_signed_in? and current_user.uniName %>
-    <a href="/"><h1 id="title">CollaboRATE@<%= current_user.uniName %></h1></a>
+    <a href="/"><h1 id="title" class = "text-uppercase">CollaboRATE@<%= current_user.uniName %></h1></a>
   <% else %>
-    <a href="/"><h1 id="title">CollaboRATE</h1></a>
+    <a href="/"><h1 id="title" class = "text-uppercase">CollaboRATE</h1></a>
   <% end %>
   <div id="colorCol">
     <vertBar></vertBar>
@@ -32,13 +39,13 @@
     <titleBar2></titleBar2>
     <titleBar3></titleBar3>
   </div>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%#= stylesheet_link_tag '/app/assets/stylesheets/application.scss', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <div class="alertBar">
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
+  <p class="friendlyAlert"><%= friendlyAlert %></p>
 </div>
 
 <%#= yield %>
@@ -47,5 +54,7 @@
   <body>
   <%= yield %>
   </body>
+
 </div>
+
 </html>

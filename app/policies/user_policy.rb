@@ -40,13 +40,13 @@ class UserPolicy < ApplicationPolicy
   end
 
   def toggleApproved?
-    if ((@user.SuperAdmin?) or (@user.OrgAdmin? and @user.uni_id == @record.uni_id)) and @user.UserID != @record.UserID
+    if ((@user.SuperAdmin?) or (@user.OrgAdmin? and @user.university_id == @record.uni_id)) and @user.id != @record.id
       true
     end
   end
 
   def toggleSuperAdmin?
-    if (@user.UserID != @record.UserID) and @user.SuperAdmin
+    if (@user.id != @record.id) and @user.SuperAdmin
       true
     end
   end
@@ -64,17 +64,25 @@ class UserPolicy < ApplicationPolicy
   end
 
 
+
+
+  def passwordReset?
+    @user.SuperAdmin? or (@user.OrgAdmin? and (@record.university_id == @user.university_id))
+  end
+
+
   def isAdmin?
     (@user.SuperAdmin? and @user.approved?) or (@user.OrgAdmin? and @user.approved)
   end
 
   def mayChange?
-    (@user.SuperAdmin? and @user.approved?) or ((@user.OrgAdmin? and @user.approved) and @user.uni_id == @record.uni_id)
+    (@user.SuperAdmin? and @user.approved?) or ((@user.OrgAdmin? and @user.approved) and @user.university_id == @record.university_id)
   end
 
   def teacherPortal?
     true
   end
+
 
   class Scope
     attr_reader :user, :scope

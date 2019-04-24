@@ -1,0 +1,11 @@
+  <%= form_for([@course, @course.projects.build]) do |f| %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+    <%= f.label 'Number of Groups' %><br>
+    <%= f.number_field :numGroups,{:value => 1, min:1, step:1} %><br>
+    <%= f.label :availableDate %><br>
+    <%= datepicker_input(f,:availableDate) %><br>
+    <%= f.label :dueDate %>
+    <%= datepicker_input(f, :dueDate) %>
+    <%= f.submit%>
+  <% end %>

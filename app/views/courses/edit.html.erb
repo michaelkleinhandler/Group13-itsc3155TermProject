@@ -1,0 +1,19 @@
+<h1>Edit a Course</h1>
+
+<%= form_for @course do |f| %>
+  <div class="field">
+    <%= f.label 'Semester'%><br>
+    <%= f.select(:semester_id, Semester.all.collect {|s| [ s.name, s.id] if s.university_id == User.find(current_user.id).university_id }) %><br>
+    <%= f.label :subject %>
+    <%= f.text_field :subject %><br>
+    <%= f.label :coursenum %>
+    <%= f.text_field :coursenum %><br>
+    <%= f.label :section %>
+    <%= f.text_field :section %><br>
+    <!--  <%#= f.text_field :teacher, :value => current_user.id, :readonly => true %><br>-->
+    <!--  <%#= f.text_field :uni_id, :value => current_user.university_id, :readonly => true %><br>-->
+    <%= f.submit %><br>
+    <%= link_to "Back", :back %>
+  </div>
+
+<% end %>

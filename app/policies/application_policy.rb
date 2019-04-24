@@ -38,8 +38,10 @@ class ApplicationPolicy
     (user.SuperAdmin? or user.Instructor? or user.Student?) and user.approved?
   end
 
-  def adminUpdate?
-    user.SuperAdmin?
+  def isAdmin?
+    if @user.SuperAdmin? or @user.OrgAdmin?
+      true
+    end
   end
 
   class Scope

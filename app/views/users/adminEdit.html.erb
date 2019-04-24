@@ -18,11 +18,28 @@
     <%= f.label 'Last Name' %><br />
     <%= f.text_field :lastName%>
   </div><br>
+  <% if current_user.SuperAdmin? %>
+      <div class="field">
+        <%= f.label 'University'%><br/>
+        <%= f.select(:university_id, University.all.pluck(:uniName, :id)) %>
+      </div><br>
+  <% end %>
 
-  <div class="field">
-    <%= f.label 'University'%><br/>
-    <%= f.select(:university_id, University.all.pluck(:uniName, :id)) %>
-  </div>
+<!--  <div id = "userEditInput">-->
+<!--    <%#= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />-->
+    <%#= f.password_field :password, autocomplete: "new-password" %>
+    <%# if @minimum_password_length %>
+<!--      <br />-->
+<!--      <em><%#= @minimum_password_length %> characters minimum</em>-->
+    <%# end %>
+<!--  </div>-->
+<!--  <br>-->
+
+<!--  <div id = "userEditInput">-->
+<!--    <%#= f.label :password_confirmation %><br />-->
+    <%#= f.password_field :password_confirmation, autocomplete: "new-password" %>
+<!--  </div>-->
+
 
   <div class="actions">
     <%= f.submit "Update" %>

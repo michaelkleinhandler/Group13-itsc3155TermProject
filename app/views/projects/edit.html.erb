@@ -1,0 +1,9 @@
+<%= form_for @project do |f| %>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br>
+  <%= f.label "Available date" %><br>
+  <%= datepicker_input(f,:availableDate) %><br>
+  <%= f.label "Due Date" %>
+  <%= datepicker_input(f, :dueDate) %>
+  <%= f.submit%>
+<% end %>

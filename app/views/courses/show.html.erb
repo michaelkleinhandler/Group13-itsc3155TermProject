@@ -1,1 +1,132 @@
-<%= @course.randID %>
+<table class='table'>
+  <thead>
+    <th>Full Name</th>
+    <th>Email Address</th>
+    <th>CollaboRATING</th>
+    <th>Number of Ratings</th>
+<!--    <th>Options</th>-->
+  </thead>
+  <tbody>
+    <% @course.getStudents.each do |s| %>
+      <tr>
+       <td><%= s.fullName %></td>
+        <td><%= s.email %></td>
+        <% if s.getRatings.count == 0 %>
+          <td>Not yet rated</td>
+        <% else %>
+          <td><%= s.getRatings.average(:rating).round(3) %></td>
+        <% end %>
+        <td><%= s.getRatings.count %></td>
+<!--        <td><%## %></td>-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<h3>Open for Rating</h3>
+<table class="table">
+  <thead>
+  <th>Project Name</th>
+  <th>Groups</th>
+  <th>Rating Available Until</th>
+  <% if current_user.id == @course.teacher %>
+    <th>Available Date</th>
+    <th>Options</th>
+  <% end %>
+  </thead>
+  <tbody>
+  <% @course.projects.order(dueDate: :desc).each do |p| %>
+    <% if Date.today.between?(p.dueDate+1, p.dueDate + 8) %>
+      <tr>
+        <td><a href=<%=course_project_path(@course, p)%>><%= p.name %></a></td>
+        <td><%= p.numGroups %></td>
+        <td><%= p.dueDate+8 %></td>
+        <% if current_user.id == @course.teacher %>
+          <td><%= p.availableDate %></td>
+          <td>
+            <%= link_to "Edit", edit_course_project_path(@course, p) %><br>
+            <%= link_to "Delete", course_project_path(@course, p), method: :delete%>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<h3>In Progress</h3>
+<table class="table">
+  <thead>
+  <th>Project Name</th>
+  <th>Groups</th>
+  <th>Due Date</th>
+  <% if current_user.id == @course.teacher %>
+    <th>Available Date</th>
+    <th>Options</th>
+  <% end %>
+  </thead>
+  <tbody>
+  <% @course.projects.order(dueDate: :desc).each do |p| %>
+    <% if Date.today.between?(p.availableDate, p.dueDate) %>
+      <tr>
+        <td><a href=<%=course_project_path(@course, p)%>><%= p.name %></a></td>
+        <td><%= p.numGroups %></td>
+        <td><%= p.dueDate %></td>
+        <% if current_user.id == @course.teacher %>
+          <td><%= p.availableDate %></td>
+          <td>
+            <%= link_to "Edit", edit_course_project_path(@course, p) %><br>
+            <%= link_to "Delete", course_project_path(@course, p), method: :delete%>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+
+
+<h3>
+  <% if current_user.Instructor? %>
+    All Projects
+  <% else %>
+    Past Projects
+  <% end %>
+</h3>
+<table class="table">
+    <thead>
+      <th>Project Name</th>
+      <th>Groups</th>
+      <th>Due Date</th>
+      <% if current_user.id == @course.teacher %>
+        <th>Available Date</th>
+        <th>Options</th>
+      <% end %>
+    </thead>
+      <tbody>
+        <% @course.projects.order(dueDate: :desc).each do |p| %>
+          <% if Date.today >= p.dueDate+8 or @course.teacher == current_user.id %>
+            <tr>
+              <td><a href=<%=course_project_path(@course, p)%>><%= p.name %></a></td>
+              <td><%= p.numGroups %></td>
+              <td><%= p.dueDate %></td>
+              <% if current_user.id == @course.teacher %>
+                <td><%= p.availableDate %></td>
+                <td>
+                  <%= link_to "Edit", edit_course_project_path(@course, p) %><br>
+                  <%= link_to "Delete", course_project_path(@course, p), method: :delete%>
+                </td>
+            <% end %>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+<% if current_user.id == @course.teacher %>
+  <%= link_to "Create Project", new_course_project_path(@course.id) %><br>
+<% end %>
+<% if current_user.Student? %>
+  <%= link_to "My Classes", '/myclasses' %>
+<% elsif current_user.Instructor? %>
+  <%= link_to "Teacher Portal", '/teacherportal' %>
+<% end %>

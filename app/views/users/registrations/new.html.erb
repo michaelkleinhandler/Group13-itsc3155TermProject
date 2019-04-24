@@ -35,8 +35,8 @@
 
       <div class="field">
         <%= f.label 'University'%><br/>
-        <%= f.select(:university_id, University.all.pluck(:uniName, :id )) %>
-      </div>
+        <%= f.select(:university_id, University.all.pluck(:uniName, :id)) %>
+      </div><br>
 
       <div class="actions">
         <%= f.submit "Register" %>

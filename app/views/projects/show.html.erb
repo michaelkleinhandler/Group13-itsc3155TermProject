@@ -1,0 +1,31 @@
+<h2><%= @project.name %><br></h2>
+<% if current_user.hasTeam?(@project) %>
+  <%= render 'student_group' %>
+<% else %>
+  <table class="table">
+    <thead>
+        <th>Group Number</th>
+        <th># of Members</th>
+        <th>Options</th>
+    </thead>
+    <tbody>
+    <% @project.teams.sort_by(&:groupNum).each do |t| %>
+        <tr>
+          <td><%= t.groupNum %></td>
+          <td><%= t.team_memberships.count %></td>
+          <td>
+            <%= link_to "Show", team_path(t.id) %><br>
+            <% if Date.today <= @project.dueDate and Date.today >= @project.availableDate %>
+              <%= link_to "Join Team", team_joinGroup_path(t), method: :post %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+<% if current_user.id == @project.course.teacher %>
+  <%= render 'teacher_project_view'%>
+<% end %>
+<%=link_to 'Previous Page', 'javascript:history.back()'%>
+

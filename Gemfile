@@ -31,22 +31,37 @@ gem 'devise'
 gem 'pundit'
 
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap', '~> 4.0.0'
+gem 'jquery-rails'
+gem 'popper_js'
+gem 'sprockets-rails'
+
+
 
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# gem 'capistrano-rails', team: :development
 
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
 
-group :development, :test do
+group :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capybara'
+  gem 'cucumber'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'rspec-expectations'
+  gem 'rspec-rails'
+  gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
+  
 
 end
 
