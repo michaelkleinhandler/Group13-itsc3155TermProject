@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_24_024837) do
+ActiveRecord::Schema.define(version: 2019_04_24_055542) do
 
   create_table "courses", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -68,14 +68,6 @@ ActiveRecord::Schema.define(version: 2019_04_24_024837) do
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
-  create_table "ratings_tables", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "team_id"
-    t.integer "rating"
-    t.index ["team_id"], name: "index_ratings_tables_on_team_id"
-    t.index ["user_id"], name: "index_ratings_tables_on_user_id"
-  end
-
   create_table "semesters", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -86,17 +78,6 @@ ActiveRecord::Schema.define(version: 2019_04_24_024837) do
     t.integer "course_id"
     t.index ["course_id"], name: "index_semesters_on_course_id"
     t.index ["university_id"], name: "index_semesters_on_university_id"
-  end
-
-  create_table "students", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "courses_id"
-  end
-
-  create_table "teachers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "team_memberships", force: :cascade do |t|
