@@ -28,10 +28,7 @@ ActiveRecord::Schema.define(version: 2019_04_23_050214) do
 
   create_table "enrollments", force: :cascade do |t|
     t.integer "user_id"
-<<<<<<< HEAD
     t.integer "course_id"
-=======
->>>>>>> acb2b556bfbef3ad0930bdfcc55dfd551edaff15
     t.boolean "banned", default: false
     t.integer "course_id"
     t.index ["banned"], name: "index_enrollments_on_banned"
