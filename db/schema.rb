@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 2019_04_24_024837) do
 
   create_table "enrollments", force: :cascade do |t|
     t.integer "user_id"
-    t.boolean "banned", default: false
     t.integer "course_id"
+    t.boolean "banned", default: false
     t.index ["banned"], name: "index_enrollments_on_banned"
     t.index ["course_id"], name: "index_enrollments_on_course_id"
     t.index ["user_id"], name: "index_enrollments_on_user_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_04_24_024837) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
+    t.integer "course_id"
     t.integer "user_id"
     t.integer "semester_id"
     t.datetime "created_at", null: false
@@ -45,7 +46,6 @@ ActiveRecord::Schema.define(version: 2019_04_24_024837) do
     t.date "availableDate"
     t.date "dueDate"
     t.boolean "pickGroups"
-    t.integer "course_id"
     t.index ["course_id"], name: "index_projects_on_course_id"
     t.index ["semester_id"], name: "index_projects_on_semester_id"
     t.index ["user_id"], name: "index_projects_on_user_id"
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 2019_04_24_024837) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "courses_id"
-    t.index ["courses_id"], name: "index_students_on_courses_id"
   end
 
   create_table "teachers", force: :cascade do |t|

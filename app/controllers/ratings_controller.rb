@@ -11,7 +11,7 @@ class RatingsController < ApplicationController
   def create
     @team_membership = TeamMembership.find(params[:team_membership_id])
     @project = Project.find(@team_membership.project_id)
-    @rating = Rating.new(ratingParams)
+    @rating = @team_membership.ratings.new(ratingParams)
     @rating.team_id = @team_membership.team_id
     @rating.project_id = @team_membership.project_id
     @rating.created_by = current_user.id
@@ -29,6 +29,14 @@ class RatingsController < ApplicationController
       flash[:alert] = "You've already rated this user"
     end
   end
+
+  def destroy
+    @rating = Rating.find(params[:id])
+    authorize @rating
+    @rating.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
 
   private
 

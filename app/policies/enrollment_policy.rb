@@ -12,7 +12,7 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def create?
-      if @user.id == @enrollment.user_id or isAdmin?
+      if @user.id == @enrollment.user_id and Date.today.between?(@enrollment.course.semester.beginDate, @enrollment.course.semester.endDate) or isAdmin?
         true
       end
   end

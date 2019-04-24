@@ -24,5 +24,8 @@
     </tbody>
   </table>
 <% end %>
+<% if current_user.id == @project.course.teacher %>
+  <%= render 'teacher_project_view'%>
+<% end %>
 <%=link_to 'Previous Page', 'javascript:history.back()'%>
 

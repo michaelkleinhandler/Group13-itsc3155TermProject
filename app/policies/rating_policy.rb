@@ -17,6 +17,12 @@ class RatingPolicy < ApplicationPolicy
     true
   end
 
+  def destroy?
+    if @rating.project.course.teacher == @user.id or isAdmin?
+      true
+    end
+  end
+
 
 
 

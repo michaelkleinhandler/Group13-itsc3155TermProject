@@ -53,7 +53,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     authorize @project
     if @project.update(projectParams)
-      redirect_to course_project_path(@project.course.id)
+      redirect_to course_path(@project.course_id)
     else
       render 'edit'
     end

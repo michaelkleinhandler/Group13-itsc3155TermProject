@@ -17,7 +17,7 @@
         <td><%= t.user.email %></td>
         <td>
           <% if t.user.getRatings.count > 0 %>
-            <%= t.user.getRatings.average(:rating) %>
+            <%= t.user.getRatings.average(:rating).round(3) %>
           <% else %>
             Not Yet Rated
           <% end %>
