@@ -7,7 +7,7 @@
 <!--    <th>Options</th>-->
   </thead>
   <tbody>
-    <% @course.getStudents.each do |s| %>
+    <% @course.getStudents.order(lastName: :asc).each do |s| %>
       <tr>
        <td><%= s.fullName %></td>
         <td><%= s.email %></td>

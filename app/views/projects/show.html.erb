@@ -11,11 +11,11 @@
     <tbody>
     <% @project.teams.sort_by(&:groupNum).each do |t| %>
         <tr>
-          <td><%= t.groupNum %></td>
+          <td><%= t.group_num %></td>
           <td><%= t.team_memberships.count %></td>
           <td>
             <%= link_to "Show", team_path(t.id) %><br>
-            <% if Date.today <= @project.dueDate and Date.today >= @project.availableDate %>
+            <% if Date.today <= @project.due_date and Date.today >= @project.available_date %>
               <%= link_to "Join Team", team_joinGroup_path(t), method: :post %>
             <% end %>
           </td>
