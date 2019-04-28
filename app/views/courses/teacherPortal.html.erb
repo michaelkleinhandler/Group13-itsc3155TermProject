@@ -5,7 +5,7 @@
 <!--<body>-->
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#All Courses">All Courses</a>
+    <a class="nav-link active" data-toggle="tab" href="#Current Courses">Current Courses</a>
   </li>
   <li class="nav-item" %>
     <a class="nav-link" data-toggle="tab" href="#pastCourses">Past Courses</a>
@@ -20,7 +20,7 @@
   <% end %>
 </ul>
 <div class="tab-content">
-  <div class="container-fluid drivers-main tab-pane active" id="All Courses" role="tabpanel">
+  <div class="container-fluid drivers-main tab-pane active" id="Current Courses" role="tabpanel">
     <table class="table">
       <thead>
         <th>Semester</th>
@@ -38,8 +38,10 @@
             <td><%= course.coursenum %></td>
             <td><%= course.section %></td>
             <td><%= course.id %></td>
-            <td><%= link_to 'Edit', edit_course_path(course) %><br>
-            <%= link_to 'Delete Course', course_path(course), method: :delete, data:{confirm: 'Are you sure you want to delete this course?'}%>
+            <td>
+              <%= link_to "Show", course_path(course) %><br>
+              <%= link_to 'Edit', edit_course_path(course) %><br>
+              <%= link_to 'Delete Course', course_path(course), method: :delete, data:{confirm: 'Are you sure you want to delete this course?'}%>
             </td>
           </tr>
         <% end %>
@@ -96,7 +98,9 @@
             <td><%= course.coursenum %></td>
             <td><%= course.section %></td>
             <td><%= course.id %></td>
-            <td><%= link_to 'Edit', edit_course_path(course) %><br>
+            <td>
+              <%= link_to "Show", course_path(course) %><br>
+              <%= link_to 'Edit', edit_course_path(course) %><br>
               <%= link_to 'Delete Course', course_path(course), method: :delete, data:{confirm: 'Are you sure you want to delete this course?'}%>
             </td>
           </tr>
@@ -122,7 +126,9 @@
             <td><%= course.coursenum %></td>
             <td><%= course.section %></td>
             <td><%= course.id %></td>
-            <td><%= link_to 'Edit', edit_course_path(course) %><br>
+            <td>
+              <%= link_to "Show", course_path(course) %><br>
+              <%= link_to 'Edit', edit_course_path(course) %><br>
               <%= link_to 'Delete Course', course_path(course), method: :delete, data:{confirm: 'Are you sure you want to delete this course?'}%>
             </td>
           </tr>

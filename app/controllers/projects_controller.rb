@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
     if @project.save
       ActiveRecord::Base.transaction do
         @project.numGroups.times do |n|
-          Team.create!(project_id: @project.id, groupNum:n+1, course_id: @project.id)
+          Team.create!(project_id: @project.id, groupNum:n+1, course_id: @project.course_id)
         end
         end
         redirect_to course_path(@course)
@@ -53,7 +53,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     authorize @project
     if @project.update(projectParams)
-      redirect_to course_project_path(@project.course.id)
+      redirect_to course_path(@project.course_id)
     else
       render 'edit'
     end

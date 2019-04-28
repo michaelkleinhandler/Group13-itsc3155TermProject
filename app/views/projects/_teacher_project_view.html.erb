@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <th>Rating For</th>
+    <th>Created By</th>
+    <th>Rating</th>
+    <th>Options</th>
+  </thead>
+  <tbody>
+    <% @project.ratings.order(:user_id).each do |r| %>
+      <% if r.rating <=2 %>
+        <tr style="background-color:yellow; border:2pt solid black;">
+      <% else %>
+          <tr>
+      <% end %>
+             <td><%= r.user.fullName %></td>
+            <td><%= r.getCreator %></td>
+            <td><%= r.rating %></td>
+            <td><%= link_to "Delete Rating", rating_path(r), method: :delete %></td>
+          </tr>
+    <% end %>
+  </tbody>
+</table>

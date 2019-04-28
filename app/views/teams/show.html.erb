@@ -1,4 +1,7 @@
 <h1><%= "Team #{@team.groupNum}" %></h1>
+<% if Date.today <= @team.project.dueDate %>
+  <%= button_to "Join Team", team_joinGroup_path(@team), method: :post %>
+<% end %>
 
 <table class="table">
   <thead>
@@ -12,9 +15,13 @@
       <tr>
         <td><%= t.user.fullName %></td>
         <td><%= t.user.email %></td>
-        <%= link_to "Join Team", team_joinGroup_path(@team), method: :post %>
-
-        <!--        <td><%#= link_to "Rate User", new_team_membership_rating_path(t) %></td>-->
+        <td>
+          <% if t.user.getRatings.count > 0 %>
+            <%= t.user.getRatings.average(:rating) %>
+          <% else %>
+            User not yet rated
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

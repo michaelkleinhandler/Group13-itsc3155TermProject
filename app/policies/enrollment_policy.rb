@@ -6,11 +6,19 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    # if @user.id == @enrollment.user_id
+      true
+    # end
   end
 
   def create?
-      true
+      if @user.id == @enrollment.user_id and Date.today.between?(@enrollment.course.semester.beginDate, @enrollment.course.semester.endDate) or isAdmin?
+        true
+      end
+  end
+
+  def adminNew?
+    isAdmin?
   end
 
   def destroy?

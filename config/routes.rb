@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     resources :projects
   end
 
-  resources :users
+  resources :users do
+    resources :enrollment
+  end
 
   resources :projects do
     resources :teams
@@ -36,7 +38,7 @@ Rails.application.routes.draw do
   resources :universities
   resources :semesters
   resources :teacher
-  resources :enrollment
+  # resources :enrollment
   # resources :ratings, :except => [:new]
 
 
@@ -48,10 +50,11 @@ Rails.application.routes.draw do
   get '/admin' => 'admin#adminDash'
   get 'users/:id' => 'users#show', :as => 'show_user'
   get 'teacherportal' => 'courses#teacherPortal'
-  get 'enrollme' => 'enrollment#new'
+  get 'enrollme/:user_id' => 'enrollment#new'
   get 'myclasses' => 'courses#myclasses'
   get 'admin/edit/:id' => 'users#adminEdit', :as => 'admin_edit'
   get 'admin/resetpassword/:id' => 'users#passwordReset', :as => 'admin_password_reset'
+  get 'admin/enrollment' => 'enrollment#adminNew'
   # get 'ratings/:team_id/:user_id/new' => 'ratings#new', :as => 'new_rating'
   patch 'admin/:id/togApp' => 'users#toggleApproved', :as => 'togApp'
   patch 'admin/:id/togSA' => 'users#toggleSuperAdmin', :as => 'togSA'

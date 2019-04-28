@@ -26,7 +26,10 @@ class Rating < ApplicationRecord
       true
     end
   end
-  #
+
+  def getCreator
+    User.find(self.created_by).fullName
+  end
 
 
 end
