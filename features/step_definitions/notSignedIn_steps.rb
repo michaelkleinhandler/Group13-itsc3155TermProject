@@ -3,7 +3,7 @@ Given("I am on the index screen") do
 end
 
 Then("I should click on the {string} button") do |string|
-  click_on('Admin Portal')
+  click_on('My Classes')
 end
 
 Then("I should be on the index screen") do
