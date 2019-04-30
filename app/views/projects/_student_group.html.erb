@@ -16,8 +16,8 @@
         <td><%= t.user.fullName %></td>
         <td><%= t.user.email %></td>
         <td>
-          <% if t.user.getRatings.count > 0 %>
-            <%= t.user.getRatings.average(:rating).round(3) %>
+          <% if t.user.numRatings > 0 %>
+            <%= t.user.getRatings %>
           <% else %>
             Not Yet Rated
           <% end %>
@@ -25,7 +25,8 @@
 
           <% if Date.today >= @project.dueDate + 1 and Date.today <= @project.dueDate + 8 %>
           <td>
-            <% if not t.user.getRatings.where('ratings.user_id = ? and ratings.created_by = ? and ratings.project_id = ?', t.user.id, current_user.id, t.project_id).present? and current_user.id != t.user.id %>
+            <%# if not t.user.getRatings.where('ratings.user_id = ? and ratings.created_by = ? and ratings.project_id = ?', t.user.id, current_user.id, t.project_id).present? and current_user.id != t.user.id %>
+            <% if t.user.hasRated(t.user_id, current_user.id, @project.id) == 0 and current_user.id != t.user_id %>
               <%= link_to "Rate User", new_team_membership_rating_path(t) %>
             <% elsif current_user.id == t.user.id %>
               You cannot rate yourself :)

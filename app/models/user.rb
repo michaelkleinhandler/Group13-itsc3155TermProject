@@ -38,9 +38,24 @@ class User < ApplicationRecord
   end
 
   def getRatings
-    # avg = User.joins(:ratings).where('ratings.user_id = ?', @user.id).average(:rating)
-    num = User.joins(:ratings).where('ratings.user_id = ?', self.id)
+    oldRatings = Rating.where('ratings.user_id = ? and ratings.created_at < ?', self.id, Date.today - 365)
+    currentRatings = Rating.where('ratings.user_id = ? and ratings.created_at >= ?', self.id, Date.today - 365)
+    if oldRatings.count > 0 and currentRatings.count > 0
+      currentRatings.average(:rating)*0.75 + oldRatings.average(:rating)* 0.25
+    elsif oldRatings.count == 0
+      currentRatings.average(:rating)
+    elsif currentRatings.count == 0
+      oldRatings.average(:rating)
+    end
 
+  end
+
+  def numRatings
+    Rating.where('ratings.user_id = ?', self.id).count
+  end
+
+  def hasRated(user, creator, project)
+    Rating.where('ratings.user_id = ? and ratings.created_by = ? and ratings.project_id = ? ', user, creator, project).count
   end
 
   def hasTeam?(project)

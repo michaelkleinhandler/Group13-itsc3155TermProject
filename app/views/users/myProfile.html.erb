@@ -2,7 +2,7 @@
     <div class="profile">
       <p><%= @user.firstName %> <%= @user.lastName %></p><br>
       <p>University: <%=  @user.uniName  %></p>
-      <p>Number of Ratings: <%= @user.getRatings.count %></p>
-      <p>Average Rating: <%= @user.getRatings.average(:rating) %></p>
+      <p>Number of Ratings: <%= @user.numRatings %></p>
+      <p>Average Rating: <%= @user.getRatings %></p>
     </div>
 </body>

@@ -5,8 +5,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def show?
-    if
-    (Date.today <= @project.dueDate + 8 and Date.today >= @project.availableDate) or (@project.course.teacher == @user.id)
+    if Date.today.between?(@project.availableDate, @project.dueDate+8) or @project.course.teacher == @user.id
       true
     end
   end
