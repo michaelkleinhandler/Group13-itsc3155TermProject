@@ -11,13 +11,12 @@
       <tr>
        <td><%= s.fullName %></td>
         <td><%= s.email %></td>
-        <% if s.getRatings.count == 0 %>
+        <% if s.numRatings == 0 %>
           <td>Not yet rated</td>
         <% else %>
-          <td><%= s.getRatings.average(:rating).round(3) %></td>
+          <td><%= s.getRatings %></td>
         <% end %>
-        <td><%= s.getRatings.count %></td>
-<!--        <td><%## %></td>-->
+        <td><%= s.numRatings %></td>
       </tr>
     <% end %>
   </tbody>

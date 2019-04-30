@@ -8,11 +8,16 @@
   <%= f.label "End Date" %>
   <%= datepicker_input(f, :endDate) %>
 
-  <div class="field">
-    <%= f.label 'University'%>
-    <%= f.select(:university_id, University.all.pluck(:uniName, :id)) %>
-  </div>
+  <% if current_user.SuperAdmin? %>
+    <div class="field">
+      <%= f.label 'University'%>
+      <%= f.select(:university_id, University.all.pluck(:uniName, :id)) %>
+    </div>
 
+  <% else %>
+      <%= f.label 'University'%>
+      <%= f.select(:university_id, University.where('universities.id = ? ', current_user.university_id ).pluck(:uniName, :id)) %>
+  <% end %>
   <%= f.submit "Create Semester" %>
 <% end %><br>
 
